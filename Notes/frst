@@ -1,1 +1,43 @@
 
+First DaY
+
+Environment Setup
+- Installed Git
+- Installed PostgreSQL
+- Installed pgAdmin
+- Installed VS Code
+- Created GitHub account
+- Created GitHub repository: data-analyst-roadmap
+
+PostgreSQL
+- Created a database
+- Created the first table
+- Inserted sample data
+- Executed SQL queries in pgAdmin
+
+SQL Topics Learned
+- CREATE TABLE
+- INSERT INTO
+- SELECT
+- WHERE
+- ORDER BY
+- GROUP BY
+- AVG()
+
+Practice
+- Created the employees table
+- Inserted test records
+- Filtered data with WHERE
+- Sorted data with ORDER BY
+- Calculated average salary by department
+
+Git & GitHub
+- Learned the basic Git workflow
+- Created project structure
+- Added SQL practice files
+- Made the first commits
+
+Challenges
+- Understanding Git repositories
+- Connecting local work with GitHub
+- Learning pgAdmin interface
