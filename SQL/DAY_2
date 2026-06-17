@@ -1,0 +1,90 @@
+ CREATE TABLE IF NOT EXISTS customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    city VARCHAR(50),
+    registration_date DATE
+);
+
+--INSERT INTO customers (first_name, last_name, city, registration_date)
+--VALUES
+--('John','Smith','New York','2023-01-15'),
+--('Emma','Johnson','Chicago','2023-01-18'),
+--('Michael','Brown','Los Angeles','2023-01-21'),
+--('Sophia','Davis','Houston','2023-01-23'),
+--('Daniel','Miller','Phoenix','2023-01-28'),
+--('Olivia','Wilson','Dallas','2023-02-01'),
+--('James','Moore','Miami','2023-02-05'),
+--('Ava','Taylor','Seattle','2023-02-07'),
+--('William','Anderson','Boston','2023-02-11'),
+--('Isabella','Thomas','Denver','2023-02-14'),
+--('Benjamin','Jackson','Chicago','2023-02-18'),
+--('Mia','White','New York','2023-02-20'),
+--('Lucas','Harris','Los Angeles','2023-02-22'),
+--('Charlotte','Martin','Houston','2023-02-25'),
+--('Henry','Thompson','Phoenix','2023-03-01'),
+--('Amelia','Garcia','Dallas','2023-03-03'),
+--('Alexander','Martinez','Miami','2023-03-07'),
+--('Harper','Robinson','Seattle','2023-03-10'),
+--('Ethan','Clark','Boston','2023-03-12'),
+--('Evelyn','Rodriguez','Denver','2023-03-15'),
+--('Jacob','Lewis','Chicago','2023-03-18'),
+--('Abigail','Lee','New York','2023-03-20'),
+--('Logan','Walker','Los Angeles','2023-03-22'),
+--('Emily','Hall','Houston','2023-03-25'),
+--('Sebastian','Allen','Phoenix','2023-03-28'),
+--('Ella','Young','Dallas','2023-04-01'),
+--('Jack','King','Miami','2023-04-04'),
+--('Scarlett','Wright','Seattle','2023-04-08'),
+--('Aiden','Scott','Boston','2023-04-10'),
+--('Grace','Green','Denver','2023-04-13');
+
+SELECT * FROM customers;
+
+SELECT * FROM customers ORDER BY first_name;
+
+SELECT * FROM customers ORDER BY first_name DESC;
+
+SELECT * FROM customers ORDER BY last_name LIMIT 10;
+
+SELECT * FROM customers ORDER BY last_name LIMIT 10 OFFSET 10;
+
+SELECT city FROM customers GROUP BY city;
+
+SELECT * FROM customers WHERE registration_date > '2023-03-20';
+
+SELECT * FROM customers WHERE city = 'Dallas';
+
+SELECT * FROM customers WHERE city = 'Seattle';
+
+SELECT * FROM customers WHERE registration_date > '2023-02-01';
+
+SELECT * FROM customers WHERE registration_date < '2023-03-01';
+
+SELECT * FROM customers WHERE customer_id > 10;
+
+SELECT * FROM customers WHERE customer_id > 10 AND city = 'Boston';
+
+SELECT * FROM customers WHERE customer_id > 15 AND city = 'Miami';
+
+SELECT * FROM customers WHERE city = 'Chicago' OR city = 'Seattle';
+
+SELECT * FROM customers WHERE city = 'Dallas' OR city = 'Houston';
+
+SELECT * FROM customers WHERE city = 'Denver' AND registration_date > '2023-03-01';
+
+SELECT * FROM customers WHERE customer_id BETWEEN 10 AND 20;
+
+SELECT * FROM customers WHERE customer_id BETWEEN 20 AND 30;
+
+SELECT * FROM customers WHERE city IN ('Chicago','Boston','Miami');
+
+SELECT * FROM customers WHERE city IN ('New York','Boston','Denver');
+
+SELECT * FROM customers WHERE first_name LIKE 'E%';
+
+SELECT * FROM customers WHERE first_name LIKE 'M%';
+
+SELECT * FROM customers WHERE first_name LIKE '%a';
+
+SELECT * FROM customers WHERE first_name LIKE '%li%';

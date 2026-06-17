@@ -1,0 +1,34 @@
+exercise 1
+https://sql-academy.org/ru/trainer/tasks/41
+solution
+SELECT start_pair  FROM Timepair WHERE id = 4;
+
+exercise 2
+https://www.hackerrank.com/challenges/revising-the-select-query/problem?isFullScreen=true
+solution
+SELECT * FROM CITY WHERE CountryCode = 'USA' AND population > '100000';
+
+exercise 3
+https://www.hackerrank.com/challenges/revising-the-select-query-2/problem?isFullScreen=true
+solution
+SELECT NAME FROM CITY WHERE Countrycode = 'USA' AND population > '120000';
+
+exercise 4
+https://www.hackerrank.com/challenges/select-by-id/problem?isFullScreen=true
+solution
+SELECT * FROM CITY WHERE ID = '1661';
+
+exercise 5
+https://www.hackerrank.com/challenges/japanese-cities-attributes/problem?isFullScreen=true
+solution
+SELECT * FROM CITY WHERE COUNTRYCODE = 'JPN';
+
+exercise 6
+https://www.hackerrank.com/challenges/japanese-cities-name/problem?isFullScreen=true
+solution
+SELECT NAME FROM CITY WHERE COUNTRYCODE = 'JPN';
+
+exercise 7
+https://www.hackerrank.com/challenges/weather-observation-station-1/problem?isFullScreen=true
+solution
+SELECT CITY, STATE FROM STATION;
