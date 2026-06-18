@@ -1,73 +1,113 @@
-# data-analyst
-This repository documents my journey toward becoming a Data Analyst.
+# Data Analyst Learning Journey
 
-Current background:
+## About
 
-ECE student
-English level: B2–C1
-Basic Python knowledge
+This repository contains my learning progress toward becoming a Data Analyst.
 
-The goal is to develop practical skills in:
+The goal of this project is to build practical skills in:
 
-SQL
-PostgreSQL
-Python
-Data Analysis
-Statistics
-Data Visualization
-Business Analytics
+- SQL
+- PostgreSQL
+- Data Analysis
+- Git & GitHub
+- Python (planned)
+- Power BI (planned)
 
-and build a portfolio that demonstrates real-world analytical skills.
+---
 
+## Current Progress
 
-DAY 1
+### SQL Topics Completed
 
-Environment Setup
-- Installed Git
-- Installed PostgreSQL
-- Installed pgAdmin
-- Installed VS Code
-- Created GitHub account
-- Created GitHub repository: data-analyst
-
-PostgreSQL
-- Created a database
-- Created the first table
-- Inserted sample data
-- Executed SQL queries in pgAdmin
-
-SQL Topics Learned
-- CREATE TABLE
-- INSERT INTO
 - SELECT
 - WHERE
 - ORDER BY
-- GROUP BY
-- AVG()
-
-Practice
-- Created the employees table
-- Inserted test records
-- Filtered data with WHERE
-- Sorted data with ORDER BY
-- Calculated average salary by department
-
-DAY 2
-
-SQL Topics Learned
-- ORDER BY ASC/DESC
-- LIKE
-- SELECT
-- WHERE
-- GROUP BY
 - LIMIT
-- OFFSET
 - DISTINCT
-- AND/OR
+- AS (Aliases)
+- COUNT()
+- AVG()
+- GROUP BY
+- HAVING
+- INNER JOIN
+- LEFT JOIN
+- LIKE / NOT LIKE
+- SUM()
+- fetch first row
+- MOD()
 
-Practice
-- Filter data with new commands that i learned and solve few exercise
+---
 
-Git & GitHub
-- Added SQL practice files day 2
-- Added Notes day 2
+## Database Project
+
+Practice database created in PostgreSQL.
+
+Tables:
+     customers - Stores customer information.
+     orders - Stores customer orders.
+     products - Stores product catalog information.
+     categories - Stores product categories
+     order_items - Stores all customers items
+
+
+## SQL Practice
+
+Solved SQL exercises from online platforms and personal practice database.
+
+Topics covered:
+
+* Filtering data
+* Sorting data
+* Aggregations
+* Grouping
+* Joins
+* Finding customers without orders
+* Counting orders by customer
+
+---
+
+## Tools
+
+* PostgreSQL
+* pgAdmin
+* VS Code
+* Git
+* GitHub
+
+---
+
+## Learning Plan
+
+Current focus:
+
+1. SQL Advanced Queries
+2. Subqueries
+3. Common Table Expressions (CTE)
+4. Window Functions
+5. Python for Data Analysis
+6. Power BI
+
+---
+
+## Repository Structure
+
+SQL/
+
+* SQL exercises
+* Query practice
+* Learning notes
+
+Projects/
+
+Database project
+Analytical SQL queries
+
+README.md
+
+---
+
+Author
+
+Emil
+
+Entry Data Analyst
