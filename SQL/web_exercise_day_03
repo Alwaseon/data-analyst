@@ -1,0 +1,110 @@
+
+Exercise 1
+https://www.hackerrank.com/challenges/weather-observation-station-3/problem?isFullScreen=true
+Solution 
+SELECT DISTINCT city FROM station WHERE MOD(ID,2)=0 ORDER BY CITY ASC;  // HERE I HAVE PROBLEMS WITH SOLUTION BCS IDK MOD BUT NOW I KNOW 
+FIRST SOLUTION WAS SELECT DISTINCT city FROM station WHERE ID % 2 = 0;  BUT WEBSITE SAY ITS WRONG 
+
+Exercise 2
+https://www.hackerrank.com/challenges/weather-observation-station-4/problem?isFullScreen=true
+Solution
+SELECT COUNT(city)-COUNT(DISTINCT city) FROM station;
+
+Exercise 3
+https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true
+solution
+SELECT city, length(city) FROM station ORDER BY length(city) DESC,city ASC fetch first row only;// learn fetch first row to solve it
+SELECT city, length(city) FROM station ORDER BY length(city) ASC ,city ASC fetch first row only;
+
+Exercise 4
+https://www.hackerrank.com/challenges/weather-observation-station-6/problem?isFullScreen=true
+solution
+SELECT DISTINCT city
+FROM station
+WHERE city LIKE 'A%'
+   OR city LIKE 'E%'
+   OR city LIKE 'I%'
+   OR city LIKE 'O%'
+   OR city LIKE 'U%';
+
+Exercise 5
+https://www.hackerrank.com/challenges/weather-observation-station-7/problem?isFullScreen=false
+solution
+SELECT DISTINCT city 
+FROM station
+WHERE city LIKE '%a'
+   OR city LIKE '%e'
+   OR city LIKE '%i'
+   OR city LIKE '%o'
+   OR city LIKE '%u';
+
+Exercise 6
+https://www.hackerrank.com/challenges/weather-observation-station-8/problem?isFullScreen=false
+solution
+SELECT DISTINCT city 
+FROM station
+WHERE (city LIKE '%a'
+   OR city LIKE '%e'
+   OR city LIKE '%i'
+   OR city LIKE '%o'
+   OR city LIKE '%u')
+   AND (city LIKE 'A%'
+   OR city LIKE 'E%'
+   OR city LIKE 'I%'
+   OR city LIKE 'O%'
+   OR city LIKE 'U%')
+   ORDER BY city;
+
+Exercise 7
+https://www.hackerrank.com/challenges/weather-observation-station-9/problem?isFullScreen=true
+solution
+SELECT DISTINCT city
+FROM station
+WHERE city NOT LIKE 'A%'
+   AND city NOT LIKE 'E%'
+   AND city NOT LIKE 'I%'
+   AND city NOT LIKE 'O%'
+   AND city NOT LIKE 'U%';
+
+Exercise 8
+https://www.hackerrank.com/challenges/weather-observation-station-10/problem?isFullScreen=true
+solution
+SELECT DISTINCT city
+FROM station
+WHERE city NOT LIKE '%a'
+   AND city NOT LIKE '%e'
+   AND city NOT LIKE '%i'
+   AND city NOT LIKE '%o'
+   AND city NOT LIKE '%u';
+
+Exercisee 9
+https://www.hackerrank.com/challenges/weather-observation-station-11/problem?isFullScreen=true
+solution
+SELECT DISTINCT city
+FROM station
+WHERE (city NOT LIKE 'A%'
+   AND city NOT LIKE 'E%'
+   AND city NOT LIKE 'I%'
+   AND city NOT LIKE 'O%'
+   AND city NOT LIKE 'U%')
+   OR (city NOT LIKE '%a'
+   AND city NOT LIKE '%e'
+   AND city NOT LIKE '%i'
+   AND city NOT LIKE '%o'
+   AND city NOT LIKE '%u');
+
+Exercise 10
+https://www.hackerrank.com/challenges/weather-observation-station-12/problem?isFullScreen=true
+solution
+SELECT DISTINCT city
+FROM station
+WHERE (city NOT LIKE 'A%'
+   AND city NOT LIKE 'E%'
+   AND city NOT LIKE 'I%'
+   AND city NOT LIKE 'O%'
+   AND city NOT LIKE 'U%')
+   AND (city NOT LIKE '%a'
+   AND city NOT LIKE '%e'
+   AND city NOT LIKE '%i'
+   AND city NOT LIKE '%o'
+   AND city NOT LIKE '%u');

@@ -1,0 +1,196 @@
+ CREATE TABLE IF NOT EXISTS customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    city VARCHAR(50),
+    registration_date DATE
+);
+
+--INSERT INTO customers (first_name, last_name, city, registration_date)
+--VALUES
+--('John','Smith','New York','2023-01-15'),
+--('Emma','Johnson','Chicago','2023-01-18'),
+--('Michael','Brown','Los Angeles','2023-01-21'),
+--('Sophia','Davis','Houston','2023-01-23'),
+--('Daniel','Miller','Phoenix','2023-01-28'),
+--('Olivia','Wilson','Dallas','2023-02-01'),
+--('James','Moore','Miami','2023-02-05'),
+--('Ava','Taylor','Seattle','2023-02-07'),
+--('William','Anderson','Boston','2023-02-11'),
+--('Isabella','Thomas','Denver','2023-02-14'),
+--('Benjamin','Jackson','Chicago','2023-02-18'),
+--('Mia','White','New York','2023-02-20'),
+--('Lucas','Harris','Los Angeles','2023-02-22'),
+--('Charlotte','Martin','Houston','2023-02-25'),
+--('Henry','Thompson','Phoenix','2023-03-01'),
+--('Amelia','Garcia','Dallas','2023-03-03'),
+--('Alexander','Martinez','Miami','2023-03-07'),
+--('Harper','Robinson','Seattle','2023-03-10'),
+--('Ethan','Clark','Boston','2023-03-12'),
+--('Evelyn','Rodriguez','Denver','2023-03-15'),
+--('Jacob','Lewis','Chicago','2023-03-18'),
+--('Abigail','Lee','New York','2023-03-20'),
+--('Logan','Walker','Los Angeles','2023-03-22'),
+--('Emily','Hall','Houston','2023-03-25'),
+--('Sebastian','Allen','Phoenix','2023-03-28'),
+--('Ella','Young','Dallas','2023-04-01'),
+--('Jack','King','Miami','2023-04-04'),
+--('Scarlett','Wright','Seattle','2023-04-08'),
+--('Aiden','Scott','Boston','2023-04-10'),
+--('Grace','Green','Denver','2023-04-13');
+
+CREATE TABLE IF NOT EXISTS categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100),
+    category_id INTEGER REFERENCES categories(category_id),
+    price NUMERIC(10,2)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES customers(customer_id),
+    order_date DATE,
+    status VARCHAR(30)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INTEGER REFERENCES orders(order_id),
+    product_id INTEGER REFERENCES products(product_id),
+    quantity INTEGER,
+    unit_price NUMERIC(10,2)
+);
+
+--INSERT INTO categories (category_name)
+--VALUES
+--('Laptops'),
+--('Smartphones'),
+--('Accessories'),
+--('Monitors'),
+--('Gaming');
+
+--INSERT INTO products (product_name, category_id, price)
+--VALUES
+--('MacBook Air M3',1,1200),
+--('ThinkPad T14',1,1100),
+--('iPhone 15',2,999),
+--('Samsung S24',2,950),
+--('Mechanical Keyboard',3,120),
+--('Wireless Mouse',3,50),
+--('Dell 27 Monitor',4,280),
+--('LG Ultrawide',4,450),
+--('PlayStation 5',5,550),
+--('Xbox Series X',5,530);
+
+--INSERT INTO customers
+--(first_name,last_name,city,registration_date)
+--VALUES
+--('John','Smith','New York','2024-01-05'),
+--('Emma','Johnson','Chicago','2024-01-07'),
+--('Michael','Brown','Boston','2024-01-10'),
+--('Sophia','Davis','Seattle','2024-01-12'),
+--('Daniel','Miller','Dallas','2024-01-14'),
+--('Olivia','Wilson','Miami','2024-01-15'),
+--('James','Moore','Denver','2024-01-17'),
+--('Ava','Taylor','Houston','2024-01-20'),
+--('William','Anderson','Chicago','2024-01-22'),
+--('Isabella','Thomas','Boston','2024-01-25');
+
+--INSERT INTO orders
+--(customer_id,order_date,status)
+--VALUES
+--(1,'2024-02-01','Completed'),
+--(2,'2024-02-03','Completed'),
+--(3,'2024-02-05','Completed'),
+--(4,'2024-02-07','Pending'),
+--(5,'2024-02-08','Completed'),
+--(1,'2024-02-10','Completed'),
+--(2,'2024-02-11','Cancelled'),
+--(6,'2024-02-13','Completed');
+
+--INSERT INTO order_items
+--(order_id,product_id,quantity,unit_price)
+--VALUES
+--(1,1,1,1200),
+--(1,5,1,120),
+--(2,3,1,999),
+--(3,7,2,280),
+--(4,4,1,950),
+--(5,9,1,550),
+--(6,6,2,50),
+--(7,2,1,1100),
+--(8,10,1,530);
+
+SELECT first_name, city
+FROM customers;
+
+SELECT first_name, city
+FROM customers
+WHERE city = 'Miami';
+
+SELECT first_name, city
+FROM customers
+WHERE city != 'Miami';
+
+SELECT *
+FROM customers
+ORDER BY first_name ASC;
+
+SELECT *
+FROM customers
+LIMIT 5;
+SELECT DISTINCT(city)
+FROM customers;
+
+SELECT COUNT(DISTINCT customer_id) amount_customers
+FROM customers;
+
+SELECT AVG(unit_price)
+FROM order_items;
+
+SELECT city, COUNT(*) AS cust_count
+FROM customers
+GROUP BY city;
+
+SELECT city, COUNT(*) AS cust_count
+FROM customers
+GROUP BY city
+ORDER BY cust_count;
+
+SELECT first_name, order_id
+FROM customers c
+JOIN orders o 
+ON c.customer_id = o.order_id;
+
+--ALTER TABLE orders
+--ADD COLUMN amount DECIMAL(10,2);
+
+--UPDATE orders SET amount = 120.50 WHERE order_id = 1;
+--UPDATE orders SET amount = 75.00 WHERE order_id = 2;
+--UPDATE orders SET amount = 210.99 WHERE order_id = 3;
+--UPDATE orders SET amount = 55.50 WHERE order_id = 4;
+--UPDATE orders SET amount = 330.00 WHERE order_id = 5;
+
+SELECT first_name, order_id, amount
+FROM customers c
+JOIN orders o 
+ON c.customer_id = o.customer_id
+WHERE amount IS NOT NULL
+ORDER BY amount desc;
+
+SELECT c.first_name, c.last_name, c.customer_id, COUNT(o.customer_id) AS orders_amount
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name;
+
+SELECT c.first_name, c.last_name, c.customer_id, o.customer_id, order_id
+FROM customers c
+LEFT JOIN orders o
+ON c.customer_id = o.customer_id
+WHERE order_id IS NULL;
