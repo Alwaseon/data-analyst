@@ -1,0 +1,70 @@
+--order_items 9
+--orders 8
+--customers 40
+--products 10
+-- categories 5
+
+SELECT first_name, last_name, p.product_name, oi.quantity
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id 
+JOIN order_items oi
+ON o.order_id = oi.order_id
+JOIN products p
+ON oi.product_id = p.product_id;
+
+SELECT cat.category_name, COUNT(product_name)
+FROM products p
+JOIN categories cat
+ON cat.category_id = p.category_id
+GROUP BY cat.category_name;
+
+SELECT product_name, SUM(quantity) total_quantity
+FROM order_items oi
+JOIN products p
+ON oi.product_id = p.product_id
+GROUP BY product_name;
+
+SELECT product_name, quantity, unit_price, quantity * unit_price  total_price
+FROM order_items oi
+JOIN products p
+ON oi.product_id = p.product_id
+GROUP BY product_name, quantity, unit_price;
+
+SELECT order_id, SUM(quantity*unit_price)
+FROM order_items oi
+GROUP BY order_id;
+
+SELECT first_name, last_name, SUM(quantity*unit_price) total_spent
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+JOIN order_items oi
+ON o.order_id = oi.order_id
+GROUP BY first_name, last_name
+ORDER BY total_spent DESC;
+
+SELECT product_name, SUM(quantity)
+FROM products p
+JOIN order_items oi
+ON p.product_id = oi.product_id
+GROUP BY product_name;
+
+SELECT category_name, SUM(quantity*unit_price) revenue
+FROM order_items o
+JOIN products p
+ON o.product_id = p.product_id
+JOIN categories c
+ON c.category_id = p.category_id
+GROUP BY category_name
+ORDER BY revenue DESC;
+
+SELECT category_name, SUM(quantity*unit_price) revenue
+FROM order_items o 
+JOIN products p
+ON o.product_id = p.product_id
+JOIN categories c
+ON c.category_id = p.category_id
+GROUP BY category_name
+ORDER BY revenue DESC
+LIMIT 1;

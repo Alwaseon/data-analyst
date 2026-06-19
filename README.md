@@ -48,6 +48,14 @@ Tables:
      products - Stores product catalog information.
      categories - Stores product categories
      order_items - Stores all customers items
+     --order_items 9
+     --orders 8
+     --customers 40
+     --products 10
+     -- categories 5
+
+     
+
 
 
 ## SQL Practice
