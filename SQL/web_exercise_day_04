@@ -1,0 +1,50 @@
+Exercise 1
+https://www.hackerrank.com/challenges/asian-population/problem?isFullScreen=true
+solution
+SELECT SUM(ci.population) AS total_city_population
+FROM COUNTRY co 
+JOIN CITY ci
+ON ci.countrycode = co.code
+WHERE co.continent = 'Asia' 
+
+Exercise 2
+https://www.hackerrank.com/challenges/african-cities/problem?isFullScreen=true
+solution
+SELECT ci.name
+FROM city ci
+JOIN country co
+ON ci.countrycode = co.code
+WHERE continent = 'Africa';
+
+Exercise 3
+https://www.hackerrank.com/challenges/revising-aggregations-sum/problem?isFullScreen=true
+solution
+SELECT SUM(population)
+FROM CITY
+WHERE district = 'California';
+
+Exercise 4
+https://www.hackerrank.com/challenges/revising-aggregations-the-average-function/problem?isFullScreen=true
+solution 
+SELECT AVG(population)
+FROM CITY
+WHERE district = 'California';
+
+Exercise 5
+https://www.hackerrank.com/challenges/average-population/problem?isFullScreen=true
+solution
+SELECT FLOOR(AVG(population))
+FROM CITY
+
+Exercise 6
+https://www.hackerrank.com/challenges/japan-population/problem?isFullScreen=true
+solution
+SELECT SUM(population)
+FROM CITY
+WHERE COUNTRYCODE = 'JPN';
+
+Exercise 7
+https://www.hackerrank.com/challenges/population-density-difference/problem?isFullScreen=true
+solution
+SELECT MAX(population)- MIN(population)
+FROM city;
