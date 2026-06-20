@@ -1,0 +1,192 @@
+SELECT category_name, SUM(quantity * unit_price) revenue
+FROM order_items o
+JOIN products p
+ON o.product_id = p.product_id
+JOIN categories cat
+ON cat.category_id = p.category_id 
+GROUP BY category_name
+HAVING SUM(quantity * unit_price) > 500
+ORDER BY revenue DESC;
+
+SELECT first_name, last_name, SUM(quantity * unit_price)
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+JOIN order_items oi
+ON oi.order_id = o.order_id
+GROUP BY first_name, last_name
+HAVING SUM(quantity * unit_price) > 1000;
+
+SELECT product_name, SUM(quantity)
+FROM order_items o
+JOIN products p
+ON o.product_id = p.product_id
+GROUP BY product_name, quantity
+HAVING SUM(quantity)  >= 2;
+
+SELECT category_name, SUM(quantity)
+FROM order_items o
+JOIN products p
+ON o.product_id = p.product_id
+JOIN categories c
+ON c.category_id = p.category_id
+GROUP BY category_name, quantity
+HAVING SUM(quantity) >= 2;
+
+SELECT first_name,last_name, COUNT(order_id) few_orders
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY first_name, last_name
+HAVING COUNT(order_id)> 1;
+
+SELECT unit_price,
+CASE
+WHEN unit_price < 200 THEN 'cheap'
+WHEN unit_price BETWEEN 200 AND 800 THEN 'medium'
+WHEN unit_price > 800 THEN 'premium'
+END price_category
+FROM  order_items
+ORDER BY price_category DESC; 
+
+SELECT order_id,SUM(quantity * unit_price) total_spent,
+CASE
+WHEN SUM(quantity * unit_price) < 500 THEN 'Small'
+WHEN SUM(quantity * unit_price) BETWEEN 500 AND 1000 THEN 'medium'
+WHEN SUM(quantity * unit_price) > 1000 THEN 'Large'
+END order_level
+FROM order_items
+GROUP BY order_id
+ORDER BY order_level DESC;
+
+SELECT first_name,last_name,SUM(quantity * unit_price) total_spent,
+CASE 
+WHEN SUM(quantity * unit_price) > 1000 THEN 'VIP'
+ELSE 'regular'
+END customer_level
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+JOIN order_items oi
+ON oi.order_id = o.order_id
+GROUP BY first_name, last_name
+ORDER BY customer_level DESC;
+
+SELECT category_name, SUM(quantity * unit_price),
+CASE
+WHEN SUM(quantity * unit_price) < 1000 THEN 'low'
+WHEN SUM(quantity * unit_price) BETWEEN 1000 AND 2000 THEN 'medium'
+WHEN SUM(quantity * unit_price)> 2000 THEN 'Large'
+END category_revenue
+FROM order_items oi
+JOIN products p
+ON oi.product_id = p.product_id
+JOIN categories c
+ON c.category_id = p.category_id
+GROUP BY category_name
+ORDER BY category_revenue;
+
+
+
+
+SELECT product_name, price
+FROM products
+WHERE price > (
+    SELECT AVG(price)
+    FROM products
+);
+
+SELECT *
+FROM (
+    SELECT order_id,
+           SUM(quantity * unit_price) order_total
+    FROM order_items
+    GROUP BY order_id
+) t
+WHERE order_total >
+(
+    SELECT AVG(order_total)
+    FROM (
+        SELECT order_id,
+               SUM(quantity * unit_price) order_total
+        FROM order_items
+        GROUP BY order_id
+    ) x
+);
+
+SELECT *
+FROM(
+	SELECT c.customer_id,
+		SUM (quantity * unit_price) customer_spent
+	FROM customers c
+	JOIN orders o
+	ON o.customer_id = c.customer_id
+	JOIN order_items oi
+	ON oi.order_id = o.order_id
+	GROUP BY c.customer_id
+) s
+WHERE customer_spent >
+(
+	SELECT AVG(customer_spent)
+	FROM(
+		SELECT c.customer_id,
+			SUM(quantity * unit_price) customer_spent
+		FROM customers c
+		JOIN orders o
+		ON o.customer_id = c.customer_id
+		JOIN order_items oi
+		ON oi.order_id = o.order_id
+		GROUP BY c.customer_id
+	) t
+);
+
+SELECT *
+FROM(
+	SELECT c.category_id,
+		SUM (quantity * unit_price) category_revenue
+	FROM categories c
+	JOIN products p
+	ON c.category_id = p.category_id
+	JOIN order_items o
+	ON o.product_id = p.product_id
+	GROUP BY c.category_id
+) x
+WHERE category_revenue >(
+	SELECT AVG(category_revenue)
+	FROM(
+		SELECT c.category_id,
+			SUM(quantity * unit_price) category_revenue
+			FROM categories c
+			JOIN products p
+			ON c.category_id = p.category_id
+			JOIN order_items o
+			ON o.product_id = p.product_id
+			GROUP BY c.category_id
+	)y
+);
+
+SELECT *
+FROM(
+	SELECT c.customer_id,
+		SUM (quantity * unit_price) customer_spent
+	FROM customers c
+	JOIN orders o
+	ON o.customer_id = c.customer_id
+	JOIN order_items oi
+	ON oi.order_id = o.order_id
+	GROUP BY c.customer_id
+) s
+WHERE customer_spent >=
+(
+	SELECT MAX(customer_spent)
+	FROM(
+		SELECT c.customer_id,
+			SUM(quantity * unit_price) customer_spent
+		FROM customers c
+		JOIN orders o
+		ON o.customer_id = c.customer_id
+		JOIN order_items oi
+		ON oi.order_id = o.order_id
+		GROUP BY c.customer_id
+	) t
+);

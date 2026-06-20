@@ -35,6 +35,8 @@ The goal of this project is to build practical skills in:
 - SUM()
 - fetch first row
 - MOD()
+- SUBQUERIES
+- CASE WHEN
 
 ---
 
@@ -71,6 +73,22 @@ Topics covered:
 * Joins
 * Finding customers without orders
 * Counting orders by customer
+* Having
+* Case When
+* Subqueries
+* Aggregate Filtering
+* Data Classification
+* Customer Spending Analysis
+* Revenue Analysis
+* Average and Maximum Value Comparisons
+
+Skills Demonstrated:
+- Filtering aggregated data
+- Categorizing business metrics
+- Building nested SQL queries
+- Analyzing customer and category performance
+- Solving Junior Data Analyst-level SQL challenges
+
 
 ---
 
@@ -89,7 +107,7 @@ Topics covered:
 Current focus:
 
 1. SQL Advanced Queries
-2. Subqueries
+2. Subqueries 
 3. Common Table Expressions (CTE)
 4. Window Functions
 5. Python for Data Analysis
