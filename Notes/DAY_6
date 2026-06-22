@@ -1,0 +1,19 @@
+SQL Topics Learned
+- GROUP BY  aggregation by column
+- HAVING filtering aggregated results
+- ORDER BY + LIMIT  Top-N analysis (Top customers/products/categories)
+- CASE WHEN  data classification / segmentation (business logic layer)
+- CTE
+
+Analytics metric learned
+- KPI
+- Revenue
+- Profit
+- order
+- customer
+
+Practice
+- Database CTE exercise 
+
+Git & GitHub
+-COMMIT DAY 6 routine

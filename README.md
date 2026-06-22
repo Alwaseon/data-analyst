@@ -130,10 +130,7 @@ Next Skills to Learn:
 - Excel (Pivot Tables, VLOOKUP/XLOOKUP)
 - Power BI (Data modeling, dashboards)
 - Portfolio project (end-to-end analysis case study)Next Skills to Learn:
-- Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
-- Excel (Pivot Tables, VLOOKUP/XLOOKUP)
-- Power BI (Data modeling, dashboards)
-- Portfolio project (end-to-end analysis case study)
+
 
 ---
 ## Repository Structure
