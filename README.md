@@ -16,6 +16,15 @@ The goal of this project is to build practical skills in:
 ---
 
 ## Current Progress
+Current Level: Junior SQL Analyst (Beginner → Intermediate transition)
+
+Able to:
+- Write multi-table JOIN queries
+- Build aggregation logic (SUM, AVG, COUNT)
+- Apply business filters (HAVING, CASE WHEN)
+- Use subqueries for comparisons
+- Build CTE-based query pipelines
+- Perform Top-N analysis
 
 ### SQL Topics Completed
 
@@ -37,6 +46,8 @@ The goal of this project is to build practical skills in:
 - MOD()
 - SUBQUERIES
 - CASE WHEN
+- CTE
+- Multi-step data aggregation pipelines
 
 ---
 
@@ -88,7 +99,20 @@ Skills Demonstrated:
 - Building nested SQL queries
 - Analyzing customer and category performance
 - Solving Junior Data Analyst-level SQL challenges
+- Top customers by total spending
+- Top products by quantity sold
+- Top categories by revenue
+- Customers above average spending
+- Categories above average revenue
+- Customers above average number of orders
 
+Analysis includes:
+- Customer spending behavior
+- Product performance
+- Category revenue analysis
+- Top-N rankings (customers, products, categories)
+- Comparison against averages
+- Data segmentation using CASE WHEN
 
 ---
 
@@ -101,20 +125,17 @@ Skills Demonstrated:
 * GitHub
 
 ---
-
-## Learning Plan
-
-Current focus:
-
-1. SQL Advanced Queries
-2. Subqueries 
-3. Common Table Expressions (CTE)
-4. Window Functions
-5. Python for Data Analysis
-6. Power BI
+Next Skills to Learn:
+- Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
+- Excel (Pivot Tables, VLOOKUP/XLOOKUP)
+- Power BI (Data modeling, dashboards)
+- Portfolio project (end-to-end analysis case study)Next Skills to Learn:
+- Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
+- Excel (Pivot Tables, VLOOKUP/XLOOKUP)
+- Power BI (Data modeling, dashboards)
+- Portfolio project (end-to-end analysis case study)
 
 ---
-
 ## Repository Structure
 
 SQL/
