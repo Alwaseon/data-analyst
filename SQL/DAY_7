@@ -1,0 +1,467 @@
+ CREATE TABLE IF NOT EXISTS customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    city VARCHAR(50),
+    registration_date DATE
+);
+
+
+
+--INSERT INTO customers (first_name, last_name, city, registration_date)
+--VALUES
+--('John','Smith','New York','2023-01-15'),
+--('Emma','Johnson','Chicago','2023-01-18'),
+--('Michael','Brown','Los Angeles','2023-01-21'),
+--('Sophia','Davis','Houston','2023-01-23'),
+--('Daniel','Miller','Phoenix','2023-01-28'),
+--('Olivia','Wilson','Dallas','2023-02-01'),
+--('James','Moore','Miami','2023-02-05'),
+--('Ava','Taylor','Seattle','2023-02-07'),
+--('William','Anderson','Boston','2023-02-11'),
+--('Isabella','Thomas','Denver','2023-02-14'),
+--('Benjamin','Jackson','Chicago','2023-02-18'),
+--('Mia','White','New York','2023-02-20'),
+--('Lucas','Harris','Los Angeles','2023-02-22'),
+--('Charlotte','Martin','Houston','2023-02-25'),
+--('Henry','Thompson','Phoenix','2023-03-01'),
+--('Amelia','Garcia','Dallas','2023-03-03'),
+--('Alexander','Martinez','Miami','2023-03-07'),
+--('Harper','Robinson','Seattle','2023-03-10'),
+--('Ethan','Clark','Boston','2023-03-12'),
+--('Evelyn','Rodriguez','Denver','2023-03-15'),
+--('Jacob','Lewis','Chicago','2023-03-18'),
+--('Abigail','Lee','New York','2023-03-20'),
+--('Logan','Walker','Los Angeles','2023-03-22'),
+--('Emily','Hall','Houston','2023-03-25'),
+--('Sebastian','Allen','Phoenix','2023-03-28'),
+--('Ella','Young','Dallas','2023-04-01'),
+--('Jack','King','Miami','2023-04-04'),
+--('Scarlett','Wright','Seattle','2023-04-08'),
+--('Aiden','Scott','Boston','2023-04-10'),
+--('Grace','Green','Denver','2023-04-13');
+
+CREATE TABLE IF NOT EXISTS categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100),
+    category_id INTEGER REFERENCES categories(category_id),
+    price NUMERIC(10,2)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES customers(customer_id),
+    order_date DATE,
+    status VARCHAR(30)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INTEGER REFERENCES orders(order_id),
+    product_id INTEGER REFERENCES products(product_id),
+    quantity INTEGER,
+    unit_price NUMERIC(10,2)
+);
+
+--INSERT INTO categories (category_name)
+--VALUES
+--('Laptops'),
+--('Smartphones'),
+--('Accessories'),
+--('Monitors'),
+--('Gaming');
+
+--INSERT INTO products (product_name, category_id, price)
+--VALUES
+--('MacBook Air M3',1,1200),
+--('ThinkPad T14',1,1100),
+--('iPhone 15',2,999),
+--('Samsung S24',2,950),
+--('Mechanical Keyboard',3,120),
+--('Wireless Mouse',3,50),
+--('Dell 27 Monitor',4,280),
+--('LG Ultrawide',4,450),
+--('PlayStation 5',5,550),
+--('Xbox Series X',5,530);
+
+--INSERT INTO customers
+--(first_name,last_name,city,registration_date)
+--VALUES
+--('John','Smith','New York','2024-01-05'),
+--('Emma','Johnson','Chicago','2024-01-07'),
+--('Michael','Brown','Boston','2024-01-10'),
+--('Sophia','Davis','Seattle','2024-01-12'),
+--('Daniel','Miller','Dallas','2024-01-14'),
+--('Olivia','Wilson','Miami','2024-01-15'),
+--('James','Moore','Denver','2024-01-17'),
+--('Ava','Taylor','Houston','2024-01-20'),
+--('William','Anderson','Chicago','2024-01-22'),
+--('Isabella','Thomas','Boston','2024-01-25');
+
+--INSERT INTO orders
+--(customer_id,order_date,status)
+--VALUES
+--(1,'2024-02-01','Completed'),
+--(2,'2024-02-03','Completed'),
+--(3,'2024-02-05','Completed'),
+--(4,'2024-02-07','Pending'),
+--(5,'2024-02-08','Completed'),
+--(1,'2024-02-10','Completed'),
+--(2,'2024-02-11','Cancelled'),
+--(6,'2024-02-13','Completed');
+
+--INSERT INTO order_items
+--(order_id,product_id,quantity,unit_price)
+--VALUES
+--(1,1,1,1200),
+--(1,5,1,120),
+--(2,3,1,999),
+--(3,7,2,280),
+--(4,4,1,950),
+--(5,9,1,550),
+--(6,6,2,50),
+--(7,2,1,1100),
+--(8,10,1,530);
+
+
+
+--ALTER TABLE orders
+--ADD COLUMN amount DECIMAL(10,2);
+
+--UPDATE orders SET amount = 120.50 WHERE order_id = 1;
+--UPDATE orders SET amount = 75.00 WHERE order_id = 2;
+--UPDATE orders SET amount = 210.99 WHERE order_id = 3;
+--UPDATE orders SET amount = 55.50 WHERE order_id = 4;
+--UPDATE orders SET amount = 330.00 WHERE order_id = 5;
+
+
+
+
+
+SELECT COUNT(*) FROM categories;
+
+--order_items 9
+--orders 8
+--customers 40
+--products 10
+-- categories 5
+
+SELECT
+	product_name,
+	unit_price,
+	ROW_NUMBER() OVER(
+		ORDER BY unit_price DESC
+	) AS rn
+FROM products p
+JOIN order_items oi
+	ON p.product_id = oi.product_id;
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id
+)
+SELECT
+	customer_id,
+	total_spent,
+	ROW_NUMBER() OVER(
+		ORDER BY total_spent DESC
+	) AS customer_rank
+FROM customer_totals;
+
+WITH product_prices AS(
+	SELECT
+		p.product_id,
+		product_name,
+		unit_price 
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id	
+)
+SELECT
+	product_id,
+	product_name,
+	unit_price,
+	RANK() OVER(
+	ORDER BY unit_price DESC
+	) AS product_rank
+FROM product_prices;
+
+WITH product_prices AS(
+	SELECT
+		p.product_id,
+		product_name,
+		unit_price 
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id	
+)
+SELECT
+	product_id,
+	product_name,
+	unit_price,
+	DENSE_RANK() OVER(
+	ORDER BY unit_price DESC
+	) AS product_rank
+FROM product_prices;
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id
+)
+SELECT
+	customer_id,
+	total_spent,
+	RANK() OVER(
+		ORDER BY total_spent DESC
+	) AS Rating_total_spent
+FROM customer_totals;
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id
+)
+SELECT
+	customer_id,
+	total_spent,
+	ROW_NUMBER() OVER(
+		ORDER BY total_spent DESC
+	) AS customer_rank
+FROM customer_totals;
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id, o.order_id
+)
+SELECT
+	customer_id,
+	total_spent,
+	order_id,
+	RANK() OVER(
+		PARTITION BY customer_id
+		ORDER BY total_spent DESC
+	) AS customer_rank_orders
+FROM customer_totals;
+
+WITH categories_nums AS(
+	SELECT
+		category_name,
+		p.product_id,
+		p.category_id,
+		unit_price
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+)
+SELECT
+	category_name,
+	product_id,
+	category_id,
+	unit_price,
+	RANK() OVER(
+		PARTITION BY category_name
+		ORDER BY unit_price DESC
+	) AS category_product_rank
+FROM categories_nums;
+
+WITH ranked_products AS(
+	SELECT
+		category_name,
+		p.product_id,
+		p.category_id,
+		unit_price,
+		ROW_NUMBER() OVER(
+			PARTITION BY category_name
+			ORDER BY unit_price DESC
+		) AS category_product_rank
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+)
+SELECT *
+FROM ranked_products
+WHERE category_product_rank = 1;
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id
+),
+top3_customers AS(
+	SELECT
+		customer_id,
+		total_spent,
+		ROW_NUMBER() OVER(
+			ORDER BY total_spent DESC
+		) top3_customers
+	FROM customer_totals
+)
+SELECT *
+FROM top3_customers
+WHERE top3_customers <= 3;
+
+
+WITH customer_totals AS(
+	SELECT
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id, o.order_id
+),
+customer_rank_orders AS(
+	SELECT
+		customer_id,
+		order_id,
+		total_spent,
+		RANK() OVER(
+			PARTITION BY customer_id
+			ORDER BY total_spent DESC
+		) customer_rank_orders
+	FROM customer_totals
+)
+SELECT *
+FROM customer_rank_orders
+WHERE customer_rank_orders = 1;
+
+WITH categories_nums AS(
+	SELECT
+		c.category_name,
+		p.product_id,
+		p.category_id,
+		SUM(quantity * unit_price) unit_price
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+	GROUP BY c.category_name, p.product_id, p.category_id
+),
+ranked_categories AS(
+	SELECT
+		category_name,
+		product_id,
+		category_id,
+		unit_price,
+		RANK() OVER(
+			PARTITION BY category_name
+			ORDER BY unit_price DESC
+		) category_product_rank
+	FROM categories_nums
+)
+SELECT *
+FROM ranked_categories;
+
+WITH product_sales AS(
+	SELECT
+		p.product_id,
+		product_name,
+		SUM(quantity) product_sales
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id
+	GROUP BY p.product_id, product_name
+)
+SELECT 
+	product_id,
+	product_name,
+	product_sales,
+	RANK() OVER(
+		ORDER BY product_sales DESC
+	) AS product_sales_rank
+FROM product_sales;
+
+WITH categories_revenue AS(
+	SELECT
+		c.category_name,
+		SUM(quantity * unit_price) category_revenue
+	FROM order_items oi
+	JOIN products p
+		ON p.product_id = oi.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+	GROUP BY c.category_name
+),
+avg_categories_revenue AS(
+	SELECT AVG(category_revenue) avg_revenue
+	FROM categories_revenue
+)
+SELECT *
+FROM categories_revenue, avg_categories_revenue
+WHERE category_revenue > avg_revenue;
+
+
+
+WITH customer_most_exp_order AS(
+	SELECT
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) order_cost
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id, o.order_id
+),
+order_ranking AS (
+	SELECT
+		customer_id,
+		order_id,
+		order_cost,
+		RANK() OVER(
+			PARTITION BY customer_id
+			ORDER BY order_cost DESC
+		) ranking_orders_cost
+	FROM customer_most_exp_order
+)
+SELECT *
+FROM order_ranking
+WHERE ranking_orders_cost = 1;

@@ -1,0 +1,29 @@
+SQL Topics Learned
+-Window Functions
+-ROW_NUMBER()
+-RANK()
+-DENSE_RANK()
+-PARTITION BY
+-GROUP BY vs Window Functions
+-Top-N per Group Analysis
+
+Analytics metric learned
+-customer spending ranking
+-order value ranking
+-product price ranking
+-category product ranking
+
+Practice
+-Customer spending ranking
+-Customer order ranking
+-Product ranking by price
+-Product ranking inside category
+-Top 3 customers by spending
+-Most expensive order per customer
+-Top-N per group queries
+-Window Functions practice
+
+Git & GitHub
+- COMMIT DAY 7 routine
+
+CHALLENGES

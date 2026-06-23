@@ -25,6 +25,10 @@ Able to:
 - Use subqueries for comparisons
 - Build CTE-based query pipelines
 - Perform Top-N analysis
+- Use Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
+- Apply PARTITION BY for grouped analysis
+- Rank customers, products, categories and orders
+- Compare GROUP BY and Window Function approaches
 
 ### SQL Topics Completed
 
@@ -48,6 +52,12 @@ Able to:
 - CASE WHEN
 - CTE
 - Multi-step data aggregation pipelines
+- Window Functions
+- ROW_NUMBER()
+- RANK()
+- DENSE_RANK()
+- PARTITION BY
+- Top-N per Group Analysis
 
 ---
 
@@ -92,6 +102,12 @@ Topics covered:
 * Customer Spending Analysis
 * Revenue Analysis
 * Average and Maximum Value Comparisons
+* Window Functions
+* Ranking Analysis
+* Customer Order Ranking
+* Product Ranking
+* Category Ranking
+* Top-N Per Group Analysis
 
 Skills Demonstrated:
 - Filtering aggregated data
@@ -105,6 +121,12 @@ Skills Demonstrated:
 - Customers above average spending
 - Categories above average revenue
 - Customers above average number of orders
+- Ranking customers by spending
+- Ranking products by price
+- Ranking products inside categories
+- Finding top orders per customer
+- Using PARTITION BY for grouped analysis
+- Building analytical queries with Window Functions
 
 Analysis includes:
 - Customer spending behavior
@@ -113,6 +135,10 @@ Analysis includes:
 - Top-N rankings (customers, products, categories)
 - Comparison against averages
 - Data segmentation using CASE WHEN
+- Customer order ranking
+- Product ranking by price
+- Category-level product ranking
+- Top order identification per customer
 
 ---
 
@@ -126,7 +152,7 @@ Analysis includes:
 
 ---
 Next Skills to Learn:
-- Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
+- LAG() and LEAD()
 - Excel (Pivot Tables, VLOOKUP/XLOOKUP)
 - Power BI (Data modeling, dashboards)
 - Portfolio project (end-to-end analysis case study)Next Skills to Learn:
