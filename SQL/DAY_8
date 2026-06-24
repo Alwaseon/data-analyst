@@ -1,0 +1,268 @@
+WITH compare_orders AS (
+	SELECT 
+		order_id,
+		SUM(quantity * unit_price) order_cost
+	FROM order_items
+	GROUP BY order_id
+)
+SELECT 
+	order_id,
+	order_cost,
+	LAG(order_cost, 1) OVER(
+	ORDER BY order_id
+	) AS lag
+FROM compare_orders;
+
+WITH compare_orders AS (
+	SELECT 
+		order_id,
+		SUM(quantity * unit_price) order_cost
+	FROM order_items
+	GROUP BY order_id
+), difference_order AS (
+		SELECT
+			order_id,
+			order_cost,
+			LAG(order_cost, 1) 
+			OVER(ORDER BY order_id) AS difference_order_cost
+		FROM compare_orders
+)
+SELECT  order_id,
+		order_cost,
+		difference_order_cost,
+		order_cost - difference_order_cost AS order_diff
+FROM difference_order ;
+
+WITH compare_orders AS (
+	SELECT 
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) order_cost
+	FROM customers c
+	JOIN orders o
+		ON o.customer_id = c.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY c.customer_id, o.order_id
+), difference_order AS (
+		SELECT
+			customer_id,
+			order_id,
+			order_cost,
+			LAG(order_cost, 1) 
+			OVER(PARTITION BY customer_id ORDER BY order_cost) AS difference_order_cost
+		FROM compare_orders
+)
+SELECT  order_id,
+		order_cost,
+		difference_order_cost
+FROM difference_order ;
+
+WITH next_order AS (
+	SELECT 
+		c.customer_id,
+		first_name,
+		last_name,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON o.customer_id = c.customer_id
+)
+SELECT
+	customer_id,
+	first_name,
+	last_name,
+	order_id,
+	LEAD(order_id, 1) OVER(PARTITION BY customer_id ORDER BY order_id)
+FROM next_order;
+
+WITH current_order AS (
+	SELECT 
+		c.customer_id,
+		first_name,
+		last_name,
+		o.order_id,
+		SUM(quantity * unit_price) current_order_price 
+	FROM customers c
+	JOIN orders o
+		ON o.customer_id = c.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id, first_name, last_name, o.order_id
+), next_order AS(
+	SELECT
+		customer_id,
+		first_name,
+		last_name,
+		order_id,
+		current_order_price,
+		LEAD(current_order_price, 1) OVER(PARTITION BY customer_id ORDER BY order_id) next_order_price
+	FROM current_order
+)
+SELECT
+	customer_id,
+	first_name,
+	last_name,
+	order_id, 
+	current_order_price,
+	next_order_price
+FROM next_order
+WHERE next_order_price > current_order_price;
+
+WITH revenue_total AS (
+	SELECT
+		order_id,
+		SUM (quantity * unit_price) revenue
+	FROM order_items
+	GROUP BY order_id
+)
+SELECT 
+	order_id,
+	revenue,
+	SUM(revenue) OVER(ORDER BY order_id) AS running_total
+FROM revenue_total;
+
+WITH revenue_total_customer AS (
+	SELECT
+		c.customer_id,
+		first_name,
+		last_name,
+		o.order_id,
+		SUM (quantity * unit_price) revenue
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id 
+	GROUP BY c.customer_id, first_name, last_name, o.order_id
+)
+SELECT 
+	customer_id,
+	first_name,
+	last_name,
+	order_id,
+	revenue,
+	SUM(revenue) OVER(PARTITION BY customer_id ORDER BY order_id) AS running_total
+FROM revenue_total_customer;
+
+WITH customer_orders AS (
+	SELECT
+		c.customer_id,
+		o.order_id,
+		1 AS order_count
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+SELECT
+	customer_id,
+	order_id,
+	SUM(order_count) OVER(
+		PARTITION BY customer_id
+		ORDER BY order_id
+	) AS running_order_count
+FROM customer_orders;
+
+WITH customer_orders_first AS (
+	SELECT
+		c.customer_id,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+SELECT
+	customer_id,
+	order_id,
+	FIRST_VALUE(order_id) OVER(PARTITION BY customer_id ORDER BY order_id)
+FROM customer_orders_first;
+
+WITH customer_orders_last AS (
+	SELECT
+		c.customer_id,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+SELECT
+	customer_id,
+	order_id,
+	LAST_VALUE(order_id) OVER(PARTITION BY customer_id ORDER BY order_id DESC)
+FROM customer_orders_last;
+
+WITH customer_orders_first AS (
+	SELECT
+		c.customer_id,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+),customer_orders_last_and_first AS( 
+		SELECT
+		c.customer_id,
+		o.order_id,
+		FIRST_VALUE(order_id) OVER(PARTITION BY c.customer_id ORDER BY order_id)  first_order,
+		LAST_VALUE(order_id) OVER(PARTITION BY c.customer_id 
+										 ORDER BY order_id DESC
+										 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) last_order
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+
+
+SELECT  customer_id,
+		order_id,
+		first_order,
+		last_order
+FROM customer_orders_last_and_first;
+
+WITH orders_ranked AS (
+	SELECT
+		customer_id,
+		order_id,
+		ROW_NUMBER() OVER(
+			PARTITION BY customer_id
+			ORDER BY order_id
+		) AS first_rn,
+		ROW_NUMBER() OVER(
+			PARTITION BY customer_id
+			ORDER BY order_id DESC
+		) AS last_rn
+	FROM orders
+)
+SELECT *
+FROM orders_ranked;
+
+WITH raise_between_orders AS (
+	SELECT 
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) total_price
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON o.order_id = oi.order_id
+	GROUP BY c.customer_id , o.order_id
+), define AS(
+	SELECT
+		customer_id,
+		order_id,
+		total_price,
+		LAG(total_price, 1) OVER(PARTITION BY customer_id ORDER BY order_id) prev_order_sum,
+		total_price - LAG(total_price, 1) OVER(PARTITION BY customer_id ORDER BY order_id) order_diff
+		
+	FROM raise_between_orders
+)
+SELECT
+	customer_id,
+	order_id,
+	total_price,
+	prev_order_sum,
+	order_diff,
+	ROW_NUMBER() OVER(ORDER BY order_diff DESC) rank_ord
+FROM define
+WHERE prev_order_sum IS NOT NULL
+LIMIT 1;

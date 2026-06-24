@@ -1,0 +1,40 @@
+SQL Topics Learned
+-Window Functions
+-ROW_NUMBER() — unique ranking
+-RANK() — ranking with gaps
+-DENSE_RANK() — ranking without gaps
+-LAG() — access previous row value
+-LEAD() — access next row value
+-FIRST_VALUE() — first value inside partition
+-LAST_VALUE() — last value inside partition
+-PARTITION BY — split data into logical groups
+-Running Totals using SUM() OVER()
+-Order-to-order comparison analysis
+-Customer order progression analysis
+-First and last customer order analysis
+
+Analytics Metrics Learned
+Order Revenue
+-Running Revenue
+-Revenue Growth
+-Revenue Change Between Orders
+-Previous Order Revenue
+-Next Order Revenue
+-Customer Order History
+-Order Ranking
+
+Practice
+-Product ranking by price
+-Customer ranking by spending
+-Order ranking by revenue
+-Category ranking
+-Previous vs current order comparison
+-Next vs current order comparison
+-Running revenue calculations
+-First customer order analysis
+-Last customer order analysis
+-Revenue growth between customer orders
+-Top growth between consecutive orders
+
+Git & GitHub
+-COMMIT DAY 8 routine

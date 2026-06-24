@@ -29,6 +29,11 @@ Able to:
 - Apply PARTITION BY for grouped analysis
 - Rank customers, products, categories and orders
 - Compare GROUP BY and Window Function approaches
+- Build Window Function queries
+- Rank customers, products and categories
+- Compare sequential customer orders
+- Calculate running totals and cumulative metrics
+- Analyze customer purchase progression
 
 ### SQL Topics Completed
 
@@ -58,6 +63,11 @@ Able to:
 - DENSE_RANK()
 - PARTITION BY
 - Top-N per Group Analysis
+- LAG()
+- LEAD()
+- FIRST_VALUE()
+- LAST_VALUE()
+- Running Totals
 
 ---
 
@@ -108,6 +118,11 @@ Topics covered:
 * Product Ranking
 * Category Ranking
 * Top-N Per Group Analysis
+* Running Totals
+* Previous vs Current Order Analysis
+* Next vs Current Order Analysis
+* First and Last Order Analysis
+
 
 Skills Demonstrated:
 - Filtering aggregated data
@@ -127,6 +142,16 @@ Skills Demonstrated:
 - Finding top orders per customer
 - Using PARTITION BY for grouped analysis
 - Building analytical queries with Window Functions
+- Customer Order Ranking
+- Product Ranking Analysis
+- Category Ranking Analysis
+- Running Revenue Analysis
+- Previous vs Current Order Comparison
+- Next vs Current Order Comparison
+- First Order Analysis
+- Last Order Analysis
+- Revenue Growth Analysis
+- Window Function Analytics
 
 Analysis includes:
 - Customer spending behavior
@@ -139,6 +164,12 @@ Analysis includes:
 - Product ranking by price
 - Category-level product ranking
 - Top order identification per customer
+- Order progression analysis
+- Customer purchase progression
+- Revenue growth tracking
+- Running revenue calculations
+- First and last transaction analysis
+- Order-to-order comparison
 
 ---
 
@@ -152,7 +183,6 @@ Analysis includes:
 
 ---
 Next Skills to Learn:
-- LAG() and LEAD()
 - Excel (Pivot Tables, VLOOKUP/XLOOKUP)
 - Power BI (Data modeling, dashboards)
 - Portfolio project (end-to-end analysis case study)Next Skills to Learn:
