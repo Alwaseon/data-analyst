@@ -1,0 +1,42 @@
+SQL Topics Learned
+-ROW_NUMBER() — unique row numbering inside partitions
+-RANK() — ranking with gaps after ties
+-DENSE_RANK() — ranking without gaps after ties
+-NTILE() — segmentation into equal-sized groups
+-PERCENT_RANK() — percentile ranking
+-LAG() — access previous row value
+-LEAD() — access next row value
+-Window Functions
+-Running Totals
+-Analytical Ranking
+-Customer Segmentation
+-Product Segmentation
+
+Analytics Metric Learned
+-Running Revenue
+-Revenue Difference Between Orders
+-Customer Revenue Share (%)
+-Category Revenue Share (%)
+-Customer Percentile Ranking
+-Product Revenue Ranking
+-Order Revenue Ranking
+
+Practice
+-Compare current order with previous order using LAG()
+-Compare current order with next order using LEAD()
+-Running total revenue analysis
+-Customer revenue share analysis
+-Category revenue share analysis
+-Customers above average spending
+-Products above average price
+-Categories above average revenue
+-Customers above average number of orders
+-Top 20% customers by revenue
+-Top 10% customers by revenue
+-Second highest revenue product
+-Second highest revenue order
+-Customer segmentation using NTILE(4)
+-Product segmentation using NTILE(3)
+
+Git & GitHub
+-COMMIT DAY 9 routine

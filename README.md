@@ -68,6 +68,11 @@ Able to:
 - FIRST_VALUE()
 - LAST_VALUE()
 - Running Totals
+- NTILE()
+- PERCENT_RANK()
+- Analytical Ranking
+- Customer Segmentation
+- Product Segmentation
 
 ---
 
@@ -122,6 +127,15 @@ Topics covered:
 * Previous vs Current Order Analysis
 * Next vs Current Order Analysis
 * First and Last Order Analysis
+* Customer Segmentation
+* Product Segmentation
+* Revenue Share Analysis
+* Percentile Analysis
+* Revenue Difference Analysis
+* Top 10% Customers
+* Top 20% Customers
+* Second Highest Revenue Product
+* Second Highest Revenue Order
 
 
 Skills Demonstrated:
@@ -152,6 +166,16 @@ Skills Demonstrated:
 - Last Order Analysis
 - Revenue Growth Analysis
 - Window Function Analytics
+- Using Window Functions for analytical reporting
+- Ranking customers, products and orders
+- Building running total calculations
+- Comparing current and previous records
+- Comparing current and next records
+- Customer segmentation with NTILE()
+- Product segmentation with NTILE()
+- Percentile analysis using PERCENT_RANK()
+- Revenue share calculations
+- Advanced SQL analytics using CTE + Window Functions
 
 Analysis includes:
 - Customer spending behavior
