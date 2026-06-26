@@ -136,7 +136,12 @@ Topics covered:
 * Top 20% Customers
 * Second Highest Revenue Product
 * Second Highest Revenue Order
-
+* Window Frames
+* ROWS BETWEEN
+* Sliding Windows
+* Running Averages
+* Local Aggregations
+* Advanced Analytical Queries
 
 Skills Demonstrated:
 - Filtering aggregated data
@@ -176,6 +181,13 @@ Skills Demonstrated:
 - Percentile analysis using PERCENT_RANK()
 - Revenue share calculations
 - Advanced SQL analytics using CTE + Window Functions
+- First and last customer orders
+- Difference between first and last orders
+- Local order sums
+- Running averages
+- Customer order comparisons
+- Highest order analysis
+- Advanced window function exercises
 
 Analysis includes:
 - Customer spending behavior
@@ -194,6 +206,13 @@ Analysis includes:
 - Running revenue calculations
 - First and last transaction analysis
 - Order-to-order comparison
+
+Key Concepts Learned
+- How window frames change query results.
+- Difference between current row, previous rows and following rows.
+- Correct usage of LAST_VALUE().
+- Combining multiple window functions in one query.
+- Solving analytical business problems with window functions.
 
 ---
 

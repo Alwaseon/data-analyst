@@ -1,0 +1,204 @@
+WITH customer_first_order AS(
+		SELECT 
+			c.customer_id,
+			first_name,
+			last_name,
+			order_id
+		FROM customers c
+		JOIN orders o
+			ON o.customer_id = c.customer_id
+)
+SELECT customer_id,
+		first_name,
+		last_name,
+		order_id,
+		FIRST_VALUE(order_id) OVER(PARTITION BY customer_id ORDER BY order_id ASC) 
+FROM customer_first_order;
+
+WITH customer_orders_last_and_first AS (
+    SELECT
+        c.customer_id,
+        o.order_id,
+        LAST_VALUE(order_id)
+        OVER(
+            PARTITION BY c.customer_id
+            ORDER BY order_id
+            ROWS BETWEEN UNBOUNDED PRECEDING
+            AND UNBOUNDED FOLLOWING
+        ) AS last_order
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+)
+SELECT
+    customer_id,
+    order_id,
+    last_order
+FROM customer_orders_last_and_first;
+
+WITH customer_orders_first AS (
+	SELECT
+		c.customer_id,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+),customer_orders_last_and_first AS( 
+		SELECT
+		c.customer_id,
+		o.order_id,
+		FIRST_VALUE(order_id) OVER(PARTITION BY c.customer_id ORDER BY order_id)  first_order,
+		LAST_VALUE(order_id) OVER(PARTITION BY c.customer_id 
+										 ORDER BY order_id ASC
+										 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) last_order
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+
+
+SELECT  customer_id,
+		order_id,
+		first_order,
+		last_order
+FROM customer_orders_last_and_first;
+
+WITH customer_orders_first AS (
+	SELECT
+		c.customer_id,
+		o.order_id
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+),customer_orders_last_and_first AS( 
+		SELECT
+		c.customer_id,
+		o.order_id,
+		FIRST_VALUE(order_id) OVER(PARTITION BY c.customer_id ORDER BY order_id)  first_order,
+		LAST_VALUE(order_id) OVER(PARTITION BY c.customer_id 
+										 ORDER BY order_id ASC
+										 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) last_order
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+)
+
+
+SELECT  customer_id,
+		order_id,
+		first_order,
+		last_order,
+		last_order - first_order as diff
+FROM customer_orders_last_and_first;
+
+WITH order_revenue AS (
+    SELECT
+        order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM order_items
+    GROUP BY order_id
+)
+SELECT
+    order_id,
+    revenue,
+    SUM(revenue) OVER(
+        ORDER BY order_id
+        ROWS BETWEEN
+            1 PRECEDING
+            AND
+            1 FOLLOWING
+    ) AS local_sum
+FROM order_revenue;
+
+WITH order_revenue AS (
+    SELECT
+        c.customer_id,
+        o.order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY c.customer_id, o.order_id
+)
+SELECT
+    customer_id,
+    order_id,
+    revenue,
+    AVG(revenue) OVER(
+        PARTITION BY customer_id
+        ORDER BY order_id
+        ROWS BETWEEN
+            1 PRECEDING
+            AND
+            CURRENT ROW
+    ) AS avg_last_two
+FROM order_revenue;
+
+WITH order_revenue AS (
+    SELECT
+        c.customer_id,
+        o.order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY c.customer_id, o.order_id
+), avg_ord AS(
+	SELECT
+		customer_id,
+		order_id,
+		revenue,
+		AVG(revenue) OVER(
+        PARTITION BY customer_id
+        ORDER BY order_id
+        ROWS BETWEEN
+            UNBOUNDED PRECEDING
+            AND
+            1 PRECEDING
+    ) AS avg_b
+	FROM order_revenue
+)
+SELECT
+    customer_id,
+    order_id,
+    revenue,
+	revenue - avg_b AS diff
+FROM avg_ord;
+
+WITH order_revenue AS (
+    SELECT
+        c.customer_id,
+        o.order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.customer_id,
+        o.order_id
+),
+max_order AS (
+    SELECT
+        customer_id,
+        order_id,
+        revenue,
+        FIRST_VALUE(revenue) OVER(
+            PARTITION BY customer_id
+            ORDER BY revenue DESC
+        ) AS max_order_revenue
+    FROM order_revenue
+)
+SELECT
+    customer_id,
+    order_id,
+    revenue,
+    max_order_revenue,
+    revenue - max_order_revenue AS revenue_diff
+FROM max_order
+ORDER BY customer_id, order_id
