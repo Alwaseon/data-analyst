@@ -1,0 +1,399 @@
+WITH order_revenue AS(
+	SELECT
+		order_id,
+		SUM(quantity * unit_price) revenue
+	FROM order_items 
+	GROUP BY order_id 
+)
+SELECT *
+FROM order_revenue
+ORDER BY revenue DESC;
+
+WITH order_revenue AS(
+	SELECT
+		order_id,
+		SUM(quantity * unit_price) revenue
+	FROM order_items 
+	GROUP BY order_id 
+)
+SELECT *
+FROM order_revenue
+WHERE revenue > (SELECT AVG(revenue) FROM order_revenue)
+ORDER BY revenue DESC;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		SUM(quantity * unit_price) customer_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY c.customer_id
+)
+SELECT *
+FROM customer_spent;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		SUM(quantity * unit_price) customer_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY c.customer_id, c.last_name, c.first_name
+)
+SELECT *
+FROM customer_spent
+WHERE customer_spent > (SELECT AVG(customer_spent) FROM customer_spent);
+
+
+WITH category_revenue AS(
+	SELECT 
+		category_name,
+		SUM(quantity * unit_price) category_revenue
+	FROM order_items o
+	JOIN products p
+		ON o.product_id = p.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+	GROUP BY category_name
+)
+SELECT *
+FROM category_revenue;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY c.customer_id
+), client_share AS(
+	SELECT total_spent,
+	total_spent * 100.0 / SUM(total_spent) OVER() AS client_share_percent
+	FROM customer_spent
+)
+SELECT *
+FROM  client_share
+ORDER BY client_share_percent DESC;
+
+WITH category_revenue AS(
+	SELECT 
+		category_name,
+		SUM(quantity * unit_price) category_revenue
+	FROM order_items o
+	JOIN products p
+		ON o.product_id = p.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+	GROUP BY category_name
+) , category_ranking AS(
+		SELECT 
+			category_name,
+			category_revenue,
+			NTILE(3) OVER(ORDER BY category_revenue DESC)
+		FROM category_revenue
+)
+SELECT *
+FROM category_ranking;
+
+WITH customer_orders AS (
+    SELECT
+        c.customer_id,
+        first_name,
+        last_name,
+        o.order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.customer_id,
+        first_name,
+        last_name,
+        o.order_id
+),max_and_min AS(
+		SELECT
+			first_name,
+			last_name,
+			customer_id,
+			revenue,
+			MAX(revenue) OVER(PARTITION BY customer_id ORDER BY customer_id) AS max_val,
+			MIN(revenue) OVER(PARTITION BY customer_id ORDER BY customer_id) AS min_val
+		FROM customer_orders
+)
+SELECT 
+		first_name,
+	    last_name,
+		customer_id,
+		revenue,
+		max_val,
+		min_val,
+		max_val - min_val AS diff
+FROM max_and_min;
+
+WITH customer_orders AS (
+    SELECT
+        c.customer_id,
+        first_name,
+        last_name,
+        o.order_id,
+        SUM(quantity * unit_price) AS revenue
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.customer_id,
+        first_name,
+        last_name,
+        o.order_id
+)
+SELECT
+    customer_id,
+    order_id,
+    revenue,
+    AVG(revenue) OVER(
+        PARTITION BY customer_id
+    ) AS avg_revenue,
+    revenue -
+    AVG(revenue) OVER(
+        PARTITION BY customer_id
+    ) AS offset_rev
+FROM customer_orders;
+
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY 
+		c.customer_id,
+		c.first_name,
+		c.last_name
+)
+SELECT 
+	first_name,
+	last_name,
+	customer_id,
+	total_spent,
+	SUM(total_spent) OVER(ORDER BY customer_id DESC)
+FROM customer_spent;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY 
+		c.first_name,
+		c.last_name,
+		c.customer_id
+)
+SELECT 
+	first_name,
+	last_name,
+	customer_id,
+	total_spent,
+	AVG(total_spent) OVER(ORDER BY customer_id)
+FROM customer_spent;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY 
+		first_name,
+		last_name,
+		c.customer_id,
+		o.order_id
+)
+SELECT 
+	first_name,
+	last_name,
+	customer_id,
+	total_spent,
+	order_id,
+	FIRST_VALUE(total_spent) OVER(PARTITION BY customer_id ORDER BY total_spent  DESC) AS max_ord_cost,
+	total_spent - FIRST_VALUE(total_spent) OVER(ORDER BY total_spent  DESC) AS diff
+FROM customer_spent;
+
+WITH customer_spent AS(
+	SELECT
+		c.first_name,
+		c.last_name,
+		c.customer_id,
+		o.order_id,
+		SUM(quantity * unit_price) total_spent
+	FROM customers c
+	JOIN orders o
+		ON c.customer_id = o.customer_id
+	JOIN order_items oi
+		ON oi.order_id = o.order_id
+	GROUP BY 
+		first_name,
+		last_name,
+		c.customer_id,
+		o.order_id
+), ranking AS(
+		SELECT
+			first_name,
+			last_name,
+			customer_id,
+			total_spent, 
+			order_id,
+			NTILE(3) OVER(ORDER BY total_spent) AS rankn
+		FROM customer_spent
+)
+SELECT *,
+CASE
+WHEN rankn = 3 THEN 'Top'
+WHEN rankn = 2 THEN 'Medium'
+WHEN rankn = 1 THEN 'Low'
+End
+FROM ranking;
+
+WITH customer_spent AS(
+    SELECT
+        c.first_name,
+        c.last_name,
+        c.customer_id,
+        SUM(quantity * unit_price) AS total_spent
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.first_name,
+        c.last_name,
+        c.customer_id
+)
+SELECT *
+FROM (
+    SELECT *,
+           DENSE_RANK() OVER(ORDER BY total_spent DESC) AS rank_spent
+    FROM customer_spent
+) 
+WHERE rank_spent = 1;
+
+WITH category_revenue AS(
+	SELECT 
+		category_name,
+		SUM(quantity * unit_price) category_revenue
+	FROM order_items o
+	JOIN products p
+		ON o.product_id = p.product_id
+	JOIN categories c
+		ON c.category_id = p.category_id
+	GROUP BY category_name
+)
+SELECT *
+FROM category_revenue
+ORDER BY category_revenue DESC
+LIMIT 1;
+
+WITH customer_ord AS(
+	SELECT
+		c.customer_id,
+		COUNT(order_id) ord_count
+ 	FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+	GROUP BY c.customer_id
+)
+SELECT *
+FROM customer_ord
+ORDER BY ord_count DESC
+LIMIT 1;
+
+WITH customer_spent AS(
+    SELECT
+        c.first_name,
+        c.last_name,
+        c.customer_id,
+        SUM(quantity * unit_price) AS customer_spent
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.customer_id,
+        c.first_name,
+        c.last_name
+)
+SELECT
+    first_name,
+    last_name,
+    customer_id,
+    customer_spent,
+    AVG(customer_spent) OVER() AS avg_customer,
+    customer_spent -
+    AVG(customer_spent) OVER() AS diff
+FROM customer_spent;
+
+WITH customer_spent AS(
+    SELECT
+        c.first_name,
+        c.last_name,
+        c.customer_id,
+        SUM(quantity * unit_price) AS customer_spent
+    FROM customers c
+    JOIN orders o
+        ON c.customer_id = o.customer_id
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY
+        c.customer_id,
+        c.first_name,
+        c.last_name
+), percent_ranks AS(
+	SELECT 
+		first_name,
+		last_name,
+		customer_id,
+		customer_spent,
+		PERCENT_RANK() OVER(ORDER BY customer_spent) AS percents 
+	FROM customer_spent
+)
+SELECT *
+FROM percent_ranks
+WHERE percents > 0.90

@@ -19,21 +19,15 @@ The goal of this project is to build practical skills in:
 Current Level: Junior SQL Analyst (Beginner → Intermediate transition)
 
 Able to:
-- Write multi-table JOIN queries
-- Build aggregation logic (SUM, AVG, COUNT)
-- Apply business filters (HAVING, CASE WHEN)
-- Use subqueries for comparisons
-- Build CTE-based query pipelines
-- Perform Top-N analysis
-- Use Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
-- Apply PARTITION BY for grouped analysis
-- Rank customers, products, categories and orders
-- Compare GROUP BY and Window Function approaches
-- Build Window Function queries
-- Rank customers, products and categories
-- Compare sequential customer orders
-- Calculate running totals and cumulative metrics
-- Analyze customer purchase progression
+- Build complex JOIN queries
+- Create multi-step CTE pipelines
+- Use aggregate and analytical functions
+- Apply Window Functions for business analysis
+- Perform ranking and percentile analysis
+- Build running totals and sliding window calculations
+- Analyze customer and product performance
+- Perform customer segmentation and revenue analysis
+- Translate business requirements into analytical SQL solutions
 
 ### SQL Topics Completed
 
@@ -188,6 +182,25 @@ Skills Demonstrated:
 - Customer order comparisons
 - Highest order analysis
 - Advanced window function exercises
+-Customer maximum order analysis
+-Customer order deviation analysis
+-Customer average spending comparison
+-Customer spending deviation from average
+-Top revenue customer identification
+-Top revenue category identification
+-Most active customer analysis
+-Customer percentile filtering
+-Advanced analytical CTE pipelines
+-Analytical comparison using window aggregates
+-Using FIRST_VALUE() for maximum order identification
+-Comparing customer orders against customer benchmarks
+-Combining CTEs with analytical window functions
+-Performing percentile-based customer analysis
+-Building customer performance metrics
+-Identifying business leaders by revenue and activity
+-Distinguishing between GROUP BY aggregation and window aggregation
+-Preserving analytical granularity during analysis
+-Translating business questions into analytical SQL logic
 
 Analysis includes:
 - Customer spending behavior
@@ -206,6 +219,12 @@ Analysis includes:
 - Running revenue calculations
 - First and last transaction analysis
 - Order-to-order comparison
+-Customer maximum order behavior
+-Customer deviation from average spending
+-Customer order performance analysis
+-Revenue leader identification
+-Customer activity analysis
+-Advanced customer comparison analytics
 
 Key Concepts Learned
 - How window frames change query results.

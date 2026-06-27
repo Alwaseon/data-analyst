@@ -1,0 +1,49 @@
+SQL Topics Learned
+-FIRST_VALUE() — retrieve the first value within a window partition
+-LAST_VALUE() — retrieve the last value within a window partition
+-Window Frames
+-ROWS BETWEEN clause
+-UNBOUNDED PRECEDING
+-UNBOUNDED FOLLOWING
+-CURRENT ROW
+-PRECEDING
+-FOLLOWING
+-Sliding Window Calculations
+-Running Aggregations
+-Advanced Window Function Logic
+
+Analytics Metrics Learned
+-First Customer Order
+-Last Customer Order
+-Difference Between First And Last Orders
+-Local Revenue Sum
+-Local Revenue Average
+-Maximum Customer Order Revenue
+-Difference From Maximum Order Revenue
+-Running Customer Average
+-Order Revenue Comparison Metrics
+
+Practice
+-Analyze customer first orders using FIRST_VALUE()
+-Analyze customer last orders using LAST_VALUE()
+-Compare first and last customer orders
+-Calculate differences between first and last orders
+-Build sliding revenue windows with ROWS BETWEEN
+-Calculate local revenue sums
+-Calculate local revenue averages
+-Compare current orders with maximum customer orders
+-Practice window frame variations
+-Solve analytical business scenarios using window functions
+
+Key Concepts Learned
+-Understanding window frame boundaries
+-Difference between PRECEDING and FOLLOWING
+-Difference between CURRENT ROW and neighboring rows
+-Default window frame behavior
+-Correct usage of FIRST_VALUE() and LAST_VALUE()
+-Importance of explicit window frame definitions
+-Preserving analytical granularity during calculations
+-Translating business requirements into window function logic
+
+Git & GitHub
+-COMMIT DAY 10 routine
