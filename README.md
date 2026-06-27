@@ -182,25 +182,25 @@ Skills Demonstrated:
 - Customer order comparisons
 - Highest order analysis
 - Advanced window function exercises
--Customer maximum order analysis
--Customer order deviation analysis
--Customer average spending comparison
--Customer spending deviation from average
--Top revenue customer identification
--Top revenue category identification
--Most active customer analysis
--Customer percentile filtering
--Advanced analytical CTE pipelines
--Analytical comparison using window aggregates
--Using FIRST_VALUE() for maximum order identification
--Comparing customer orders against customer benchmarks
--Combining CTEs with analytical window functions
--Performing percentile-based customer analysis
--Building customer performance metrics
--Identifying business leaders by revenue and activity
--Distinguishing between GROUP BY aggregation and window aggregation
--Preserving analytical granularity during analysis
--Translating business questions into analytical SQL logic
+- Customer maximum order analysis
+- Customer order deviation analysis
+- Customer average spending comparison
+- Customer spending deviation from average
+- Top revenue customer identification
+- Top revenue category identification
+- Most active customer analysis
+- Customer percentile filtering
+- Advanced analytical CTE pipelines
+- Analytical comparison using window aggregates
+- Using FIRST_VALUE() for maximum order identification
+- Comparing customer orders against customer benchmarks
+- Combining CTEs with analytical window functions
+- Performing percentile-based customer analysis
+- Building customer performance metrics
+- Identifying business leaders by revenue and activity
+- Distinguishing between GROUP BY aggregation and window aggregation
+- Preserving analytical granularity during analysis
+- Translating business questions into analytical SQL logic
 
 Analysis includes:
 - Customer spending behavior
@@ -219,12 +219,12 @@ Analysis includes:
 - Running revenue calculations
 - First and last transaction analysis
 - Order-to-order comparison
--Customer maximum order behavior
--Customer deviation from average spending
--Customer order performance analysis
--Revenue leader identification
--Customer activity analysis
--Advanced customer comparison analytics
+- Customer maximum order behavior
+- Customer deviation from average spending
+- Customer order performance analysis
+- Revenue leader identification
+- Customer activity analysis
+- Advanced customer comparison analytics
 
 Key Concepts Learned
 - How window frames change query results.
