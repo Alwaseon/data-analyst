@@ -67,6 +67,12 @@ Able to:
 - Analytical Ranking
 - Customer Segmentation
 - Product Segmentation
+- EXPLAIN
+- EXPLAIN ANALYZE
+- Query Execution Plans
+- Query Optimization Basics
+- CREATE INDEX
+- SQL Performance Analysis
 
 ---
 
@@ -201,6 +207,16 @@ Skills Demonstrated:
 - Distinguishing between GROUP BY aggregation and window aggregation
 - Preserving analytical granularity during analysis
 - Translating business questions into analytical SQL logic
+- Reading PostgreSQL execution plans
+- Interpreting query execution costs
+- Comparing estimated and actual query execution metrics
+- Identifying Sequential Scan and Index Scan operations
+- Creating indexes for query optimization
+- Comparing query performance before and after indexing
+- Analyzing JOIN execution strategies
+- Understanding basic SQL optimization techniques
+- Evaluating CTE and subquery execution plans
+- Interpreting PostgreSQL query execution behavior
 
 Analysis includes:
 - Customer spending behavior
@@ -225,6 +241,13 @@ Analysis includes:
 - Revenue leader identification
 - Customer activity analysis
 - Advanced customer comparison analytics
+- Query execution plan analysis
+- Query performance comparison
+- Index efficiency analysis
+- Execution cost evaluation
+- Join strategy analysis
+- Query optimization experiments
+- PostgreSQL execution engine analysis
 
 Key Concepts Learned
 - How window frames change query results.
@@ -232,6 +255,14 @@ Key Concepts Learned
 - Correct usage of LAST_VALUE().
 - Combining multiple window functions in one query.
 - Solving analytical business problems with window functions.
+- Difference between EXPLAIN and EXPLAIN ANALYZE.
+- Difference between estimated and actual execution metrics.
+- When PostgreSQL uses Sequential Scan.
+- When PostgreSQL uses Index Scan.
+- How indexes improve query performance.
+- Basic understanding of PostgreSQL execution plans.
+- Understanding query execution costs.
+- Fundamentals of SQL query optimization.
 
 ---
 

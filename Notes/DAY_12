@@ -1,0 +1,51 @@
+SQL Topics Learned
+- EXPLAIN
+- EXPLAIN ANALYZE
+- Query Execution Plan
+- Query Cost Estimation
+- Actual Execution Time
+- Sequential Scan (Seq Scan)
+- Index Scan
+- Nested Loop Join
+- Hash Join
+- Merge Join
+- CREATE INDEX
+- Query Optimization Basics
+- PostgreSQL Execution Engine Overview
+
+Analytics Metric Learned
+-Query Execution Cost
+- Estimated Rows
+- Actual Rows Processed
+- Execution Time Analysis
+- Index Performance Comparison
+- Join Performance Analysis
+- Query Optimization Metrics
+
+Practice
+- Reading EXPLAIN output
+- Reading EXPLAIN ANALYZE output
+- Comparing estimated and actual execution time
+- Analyzing Sequential Scan operations
+- Analyzing Index Scan operations
+- Understanding Nested Loop joins
+- Understanding Hash Join execution
+- Creating indexes
+- Comparing query performance before and after indexing
+- Comparing CTE and subquery execution plans
+- Analyzing GROUP BY execution plans
+- Optimizing filtering queries
+
+Key Concepts Learned
+- Difference between EXPLAIN and EXPLAIN ANALYZE
+- How PostgreSQL executes SQL queries internally
+- Difference between estimated cost and actual execution time
+- When PostgreSQL uses Seq Scan
+- When PostgreSQL uses Index Scan
+- Why indexes improve query performance
+- Basic understanding of join execution strategies
+- How query structure affects performance
+- Introduction to SQL optimization techniques
+
+Git & GitHub
+- COMMIT DAY 12 routine
