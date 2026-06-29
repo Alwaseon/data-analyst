@@ -1,0 +1,51 @@
+SQL Topics Learned
+- Primary Key (PK)
+- Foreign Key (FK)
+- One-to-One Relationships
+- One-to-Many Relationships
+- Many-to-Many Relationships
+- Database Normalization
+- First Normal Form (1NF)
+- Second Normal Form (2NF)
+- Third Normal Form (3NF)
+- Entity Relationship Diagram (ERD)
+- Database Design
+- Database Modeling
+- Relational Database Architecture
+
+Analytics Metric Learned
+- Database Entity Relationships
+- Table Dependency Analysis
+- Primary Key Identification
+- Foreign Key Mapping
+- Relationship Cardinality Analysis
+- Data Normalization Analysis
+
+Practice
+- Identifying Primary Keys
+- Identifying Foreign Keys
+- Analyzing One-to-Many relationships
+- Analyzing Many-to-Many relationships
+- Building entity relationship mappings
+- Analyzing database normalization
+- Verifying First Normal Form (1NF)
+- Verifying Second Normal Form (2NF)
+- Verifying Third Normal Form (3NF)
+- Designing Entity Relationship Diagrams
+- Modeling relational database structures
+- Analyzing business entities and dependencies
+
+Key Concepts Learned
+- Difference between Primary Key and Foreign Key.
+- Difference between One-to-One, One-to-Many and Many-to-Many relationships.
+- Understanding relationship cardinality.
+- Why database normalization is necessary.
+- Difference between 1NF, 2NF and 3NF.
+- Understanding transitive dependencies.
+- Understanding partial dependencies.
+- Why business entities are separated into multiple tables.
+- How relational databases are designed.
+- How ER diagrams represent database structures.
+
+Git & GitHub
+- COMMIT DAY 13 routine

@@ -73,6 +73,18 @@ Able to:
 - Query Optimization Basics
 - CREATE INDEX
 - SQL Performance Analysis
+- Primary Key
+- Foreign Key
+- One-to-One Relationships
+- One-to-Many Relationships
+- Many-to-Many Relationships
+- Database Normalization
+- First Normal Form (1NF)
+- Second Normal Form (2NF)
+- Third Normal Form (3NF)
+- Entity Relationship Diagrams (ERD)
+- Database Design
+- Database Modeling
 
 ---
 
@@ -217,6 +229,16 @@ Skills Demonstrated:
 - Understanding basic SQL optimization techniques
 - Evaluating CTE and subquery execution plans
 - Interpreting PostgreSQL query execution behavior
+- Identifying primary and foreign keys
+- Designing relational database structures
+- Analyzing entity relationships
+- Building entity relationship diagrams
+- Applying database normalization principles
+- Distinguishing between 1NF, 2NF and 3NF
+- Identifying partial and transitive dependencies
+- Modeling business entities and relationships
+- Designing normalized database schemas
+- Translating business requirements into database structures
 
 Analysis includes:
 - Customer spending behavior
@@ -248,6 +270,13 @@ Analysis includes:
 - Join strategy analysis
 - Query optimization experiments
 - PostgreSQL execution engine analysis
+- Database entity analysis
+- Relationship analysis
+- Cardinality analysis
+- Database normalization analysis
+- Business entity modeling
+- Relational database design
+- Entity dependency analysis
 
 Key Concepts Learned
 - How window frames change query results.
@@ -263,6 +292,14 @@ Key Concepts Learned
 - Basic understanding of PostgreSQL execution plans.
 - Understanding query execution costs.
 - Fundamentals of SQL query optimization.
+- Difference between Primary Key and Foreign Key.
+- Difference between One-to-One, One-to-Many and Many-to-Many relationships.
+- Understanding database normalization.
+- Difference between partial and transitive dependencies.
+- Why normalization improves database quality.
+- How relational databases are modeled.
+- Understanding entity relationship diagrams.
+- Fundamentals of database design.
 
 ---
 
