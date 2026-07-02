@@ -1,0 +1,24 @@
+SELECT
+    payment_method,
+    COUNT(*) AS usage_count
+FROM payments
+GROUP BY payment_method
+ORDER BY usage_count DESC;
+
+SELECT
+    payment_method,
+    SUM(quantity * unit_price) AS revenue
+FROM payments p
+JOIN order_items oi
+    ON p.order_id = oi.order_id
+WHERE payment_status = 'Paid'
+GROUP BY payment_method
+ORDER BY revenue DESC;
+
+SELECT 
+	payment_status,
+	COUNT(*) AS status_count,
+    COUNT(*) * 100.0 / SUM(COUNT(*)) OVER() AS percentage
+FROM payments
+GROUP BY payment_status;
+

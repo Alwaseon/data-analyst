@@ -1,0 +1,37 @@
+WITH larg_order AS(
+		SELECT 
+			o.order_id,
+			SUM(quantity * unit_price) order_cost
+		FROM orders o
+		JOIN order_items oi
+			ON o.order_id = oi.order_id
+		GROUP BY o.order_id
+)
+SELECT
+	order_id,
+	order_cost
+FROM larg_order
+ORDER BY order_cost DESC
+LIMIT 1;
+
+WITH order_revenue AS(
+    SELECT
+        o.order_id,
+        SUM(quantity * unit_price) revenue
+    FROM orders o
+    JOIN order_items oi
+        ON oi.order_id = o.order_id
+    GROUP BY o.order_id
+)
+SELECT
+    AVG(revenue) AS average_order_value
+FROM order_revenue;
+
+SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(quantity * unit_price) AS revenue
+FROM orders o
+JOIN order_items oi
+    ON o.order_id = oi.order_id
+GROUP BY month
+ORDER BY month;

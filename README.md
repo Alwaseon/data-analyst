@@ -13,6 +13,8 @@ The goal of this project is to build practical skills in:
 - Python (planned)
 - Power BI (planned)
 
+Learning Period:
+June 2026 – Present
 ---
 
 ## Current Progress
@@ -98,12 +100,14 @@ Tables:
      products - Stores product catalog information.
      categories - Stores product categories
      order_items - Stores all customers items
-     --order_items 9
-     --orders 8
-     --customers 40
-     --products 10
-     -- categories 5
-
+     payments - Stores payment information
+Database size:
+     customers: 40 rows
+     orders: 8 rows
+     order_items: 9 rows
+     products: 10 rows
+     categories: 5 rows
+     payments: 8 rows
      
 
 
@@ -156,127 +160,76 @@ Topics covered:
 * Advanced Analytical Queries
 
 Skills Demonstrated:
-- Filtering aggregated data
-- Categorizing business metrics
-- Building nested SQL queries
-- Analyzing customer and category performance
-- Solving Junior Data Analyst-level SQL challenges
-- Top customers by total spending
-- Top products by quantity sold
-- Top categories by revenue
-- Customers above average spending
-- Categories above average revenue
-- Customers above average number of orders
-- Ranking customers by spending
-- Ranking products by price
-- Ranking products inside categories
-- Finding top orders per customer
-- Using PARTITION BY for grouped analysis
-- Building analytical queries with Window Functions
-- Customer Order Ranking
-- Product Ranking Analysis
-- Category Ranking Analysis
-- Running Revenue Analysis
-- Previous vs Current Order Comparison
-- Next vs Current Order Comparison
-- First Order Analysis
-- Last Order Analysis
-- Revenue Growth Analysis
-- Window Function Analytics
-- Using Window Functions for analytical reporting
-- Ranking customers, products and orders
-- Building running total calculations
-- Comparing current and previous records
-- Comparing current and next records
-- Customer segmentation with NTILE()
-- Product segmentation with NTILE()
-- Percentile analysis using PERCENT_RANK()
-- Revenue share calculations
-- Advanced SQL analytics using CTE + Window Functions
-- First and last customer orders
-- Difference between first and last orders
-- Local order sums
-- Running averages
-- Customer order comparisons
-- Highest order analysis
-- Advanced window function exercises
-- Customer maximum order analysis
-- Customer order deviation analysis
-- Customer average spending comparison
-- Customer spending deviation from average
-- Top revenue customer identification
-- Top revenue category identification
-- Most active customer analysis
-- Customer percentile filtering
-- Advanced analytical CTE pipelines
-- Analytical comparison using window aggregates
-- Using FIRST_VALUE() for maximum order identification
-- Comparing customer orders against customer benchmarks
-- Combining CTEs with analytical window functions
-- Performing percentile-based customer analysis
-- Building customer performance metrics
-- Identifying business leaders by revenue and activity
-- Distinguishing between GROUP BY aggregation and window aggregation
-- Preserving analytical granularity during analysis
-- Translating business questions into analytical SQL logic
-- Reading PostgreSQL execution plans
-- Interpreting query execution costs
+- Writing complex SQL queries using JOINs, CTEs, subqueries and window functions
+- Building multi-step analytical pipelines
+- Performing customer, product and category performance analysis
+- Applying aggregate and analytical functions
+- Ranking customers, products and categories
+- Performing Top-N and percentile analysis
+- Building customer segmentation models using NTILE() and PERCENT_RANK()
+- Calculating running totals, running averages and sliding windows
+- Comparing current, previous and next records using window functions
+- Analyzing customer spending behavior and revenue distribution
+- Performing revenue share and contribution analysis
+- Identifying top-performing customers, products and categories
+- Comparing business performance against average metrics
+- Using FIRST_VALUE(), LAST_VALUE(), LAG() and LEAD() for business analysis
+- Building customer benchmark and deviation analysis
+- Creating advanced analytical queries using CTEs and Window Functions
+- Preserving row-level granularity during analytical calculations
+- Distinguishing GROUP BY aggregation from window aggregation
+- Translating business questions into analytical SQL solutions
+- Reading and interpreting PostgreSQL execution plans
 - Comparing estimated and actual query execution metrics
 - Identifying Sequential Scan and Index Scan operations
-- Creating indexes for query optimization
-- Comparing query performance before and after indexing
+- Creating and evaluating indexes for query optimization
 - Analyzing JOIN execution strategies
-- Understanding basic SQL optimization techniques
-- Evaluating CTE and subquery execution plans
-- Interpreting PostgreSQL query execution behavior
-- Identifying primary and foreign keys
+- Understanding SQL query optimization fundamentals
 - Designing relational database structures
-- Analyzing entity relationships
-- Building entity relationship diagrams
-- Applying database normalization principles
-- Distinguishing between 1NF, 2NF and 3NF
-- Identifying partial and transitive dependencies
 - Modeling business entities and relationships
-- Designing normalized database schemas
-- Translating business requirements into database structures
+- Applying database normalization principles (1NF, 2NF, 3NF)
+- Building entity relationship diagrams
+- Translating business requirements into normalized database schemas
 
 Analysis includes:
-- Customer spending behavior
-- Product performance
-- Category revenue analysis
-- Top-N rankings (customers, products, categories)
-- Comparison against averages
-- Data segmentation using CASE WHEN
-- Customer order ranking
-- Product ranking by price
-- Category-level product ranking
-- Top order identification per customer
-- Order progression analysis
-- Customer purchase progression
-- Revenue growth tracking
-- Running revenue calculations
-- First and last transaction analysis
-- Order-to-order comparison
-- Customer maximum order behavior
-- Customer deviation from average spending
-- Customer order performance analysis
-- Revenue leader identification
+- Customer spending analysis
 - Customer activity analysis
-- Advanced customer comparison analytics
+- Customer segmentation analysis
+- Customer revenue concentration analysis
+- Customer order progression analysis
+- Product performance analysis
+- Product revenue ranking analysis
+- Product segmentation analysis
+- Category revenue analysis
+- Category contribution analysis
+- Revenue growth analysis
+- Revenue distribution analysis
+- Revenue share analysis
+- Revenue trend analysis
+- Order performance analysis
+- Largest order analysis
+- First and last transaction analysis
+- Previous vs current transaction comparison
+- Next vs current transaction comparison
+- Running revenue calculations
+- Running average calculations
+- Percentile analysis
+- Top-N analysis for customers, products and categories
+- Business leader identification
+- Customer benchmark analysis
+- Customer deviation analysis
 - Query execution plan analysis
 - Query performance comparison
 - Index efficiency analysis
-- Execution cost evaluation
 - Join strategy analysis
-- Query optimization experiments
+- SQL optimization experiments
 - PostgreSQL execution engine analysis
 - Database entity analysis
 - Relationship analysis
 - Cardinality analysis
 - Database normalization analysis
 - Business entity modeling
-- Relational database design
-- Entity dependency analysis
+- Relational database design analysis
 
 Key Concepts Learned
 - How window frames change query results.
@@ -303,6 +256,115 @@ Key Concepts Learned
 
 ---
 
+## Portfolio Project
+
+### Business Sales Analytics Project (PostgreSQL)
+
+This project simulates a real business analysis process using PostgreSQL.
+
+### Project Objectives
+
+- Analyze customer behavior
+- Analyze product performance
+- Analyze category revenue
+- Analyze order patterns
+- Analyze payment performance
+- Identify business risks and growth opportunities
+- Build business recommendations based on data
+
+### Database Structure
+
+Tables used:
+
+- customers
+- orders
+- order_items
+- products
+- categories
+- payments
+
+### Analysis Performed
+
+#### Customer Analysis
+
+- Top revenue customers
+- Customer revenue share
+- Most active customers
+- Customer segmentation using NTILE()
+- Customers above average revenue
+- Customer concentration analysis
+
+#### Product Analysis
+
+- Top selling products
+- Highest revenue products
+- Product segmentation
+- Product revenue ranking
+- Product performance analysis
+
+#### Category Analysis
+
+- Top revenue category
+- Category revenue share
+- Categories above average revenue
+- Category growth opportunities
+
+#### Order Analysis
+
+- Largest order analysis
+- Revenue trends over time
+- Running revenue analysis
+- Moving average revenue analysis
+- Revenue growth patterns
+
+#### Payment Analysis
+
+- Payment success rate
+- Payment performance analysis
+- Transaction completion analysis
+
+### Business Findings
+
+- Revenue is concentrated among a small number of customers.
+- Emma Johnson generates approximately 35% of total company revenue.
+- The Laptop category generates approximately 37% of total company revenue.
+- Smartphones represent strong growth potential.
+- Only 6 out of 40 registered customers made purchases.
+- Payment success rate is 87.5%.
+
+### Business Recommendations
+
+- Increase customer acquisition activities.
+- Reduce dependency on a small number of customers.
+- Continue investing in the Laptop category.
+- Expand the Smartphone category.
+- Improve revenue diversification.
+- Continue monitoring payment performance.
+
+### Project Results
+
+- Total revenue analyzed: 6,109
+- Registered customers: 40
+- Active customers: 6
+- Total orders: 8
+- Top customer: Emma Johnson (35% of total revenue)
+- Top category: Laptop (37% of total revenue)
+- Payment success rate: 87.5%
+- Largest order value: 1,320
+
+### Technologies Used
+
+- PostgreSQL
+- SQL
+- Window Functions
+- CTE
+- Aggregate Functions
+- Analytical Functions
+- Query Optimization
+- Database Design
+
+---
+
 ## Tools
 
 * PostgreSQL
@@ -312,32 +374,37 @@ Key Concepts Learned
 * GitHub
 
 ---
-Next Skills to Learn:
-- Excel (Pivot Tables, VLOOKUP/XLOOKUP)
-- Power BI (Data modeling, dashboards)
-- Portfolio project (end-to-end analysis case study)Next Skills to Learn:
-
-
----
 ## Repository Structure
 
 SQL/
+- SQL exercises
+- Query practice
+- Learning notes
 
-* SQL exercises
-* Query practice
-* Learning notes
+PROJECTS/
+- Portfolio project
 
-Projects/
+PROJECTS/PORTFOLIO_PROJECT/
 
-Database project
-Analytical SQL queries
+DATA/
+- Database schema
+
+REPORT/
+- Business report
+
+SQL/
+- Customer analysis
+- Product analysis
+- Category analysis
+- Orders analysis
+- Payment analysis
 
 README.md
 
 ---
 
-Author
+## Author
 
-Emil
+Emil Askarov
 
-Entry Data Analyst
+Aspiring Data Analyst

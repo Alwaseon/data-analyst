@@ -1,0 +1,115 @@
+WITH top_customer AS(
+		SELECT
+			c.customer_id,
+			first_name,
+			last_name,
+			SUM(quantity * unit_price) revenue
+		FROM customers c
+		JOIN orders o
+			ON o.customer_id = c.customer_id
+		JOIN order_items oi
+			ON oi.order_id = o.order_id
+		GROUP BY c.customer_id, first_name, last_name
+)
+SELECT 
+	customer_id,
+	first_name,
+	last_name,
+	revenue
+FROM top_customer
+ORDER BY revenue DESC
+LIMIT 1;
+
+WITH customer_revenue AS(
+		SELECT
+			c.customer_id,
+			first_name,
+			last_name,
+			SUM(quantity * unit_price) revenue
+		FROM customers c
+		JOIN orders o
+			ON o.customer_id = c.customer_id
+		JOIN order_items oi
+			ON oi.order_id = o.order_id
+		GROUP BY c.customer_id, first_name, last_name
+), client_share AS(
+	SELECT 
+		customer_id,
+		first_name,
+		last_name,
+		revenue,
+		revenue * 100.0 / SUM(revenue) OVER() AS client_share_percent
+	FROM customer_revenue
+)
+SELECT *
+FROM client_share
+ORDER BY client_share_percent DESC
+LIMIT 3;
+
+WITH active_customers AS(
+		SELECT
+			c.customer_id,
+			first_name,
+			last_name,
+			COUNT(order_id) order_num
+		FROM customers c
+		JOIN orders o
+			ON c.customer_id = o.customer_id
+		GROUP BY c.customer_id, first_name, last_name
+)
+SELECT *
+FROM active_customers
+ORDER BY order_num DESC
+LIMIT 5;
+
+WITH top_customers AS(
+		SELECT
+			c.customer_id,
+			first_name,
+			last_name,
+			SUM(quantity * unit_price) revenue
+		FROM customers c
+		JOIN orders o
+			ON o.customer_id = c.customer_id
+		JOIN order_items oi
+			ON oi.order_id = o.order_id
+		GROUP BY c.customer_id, first_name, last_name
+), ranking AS (
+		SELECT
+			customer_id,
+			first_name,
+			last_name,
+			revenue,
+			NTILE(4) OVER(ORDER BY revenue DESC) as ranks
+		FROM top_customers
+)
+SELECT *,
+CASE
+WHEN ranks = '1' THEN 'Vip'
+WHEN ranks = '2' THEN 'High'
+WHEN ranks = '3' THEN 'Medium'
+WHEN ranks = '4' THEN 'Low'
+END
+FROM ranking;
+
+
+WITH customer_revenue AS(
+		SELECT
+			c.customer_id,
+			first_name,
+			last_name,
+			SUM(quantity * unit_price) revenue
+		FROM customers c
+		JOIN orders o
+			ON o.customer_id = c.customer_id
+		JOIN order_items oi
+			ON oi.order_id = o.order_id
+		GROUP BY c.customer_id, first_name, last_name
+)
+SELECT 
+	customer_id,
+	first_name,
+	last_name,
+	revenue
+FROM customer_revenue
+WHERE revenue > (SELECT AVG(revenue) FROM customer_revenue);

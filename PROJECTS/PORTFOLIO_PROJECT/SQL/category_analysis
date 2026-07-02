@@ -1,0 +1,67 @@
+WITH category_revenue AS(
+		SELECT
+			c.category_name,
+			SUM(quantity * unit_price) cat_revenue
+		FROM order_items oi
+		JOIN products p
+			ON p.product_id = oi.product_id
+		JOIN categories c
+			ON c.category_id = p.category_id
+		GROUP BY category_name
+)
+SELECT *
+FROM category_revenue
+ORDER BY cat_revenue DESC
+LIMIT 1;
+
+WITH category_revenue AS(
+		SELECT
+			c.category_name,
+			SUM(quantity * unit_price) cat_revenue
+		FROM order_items oi
+		JOIN products p
+			ON p.product_id = oi.product_id
+		JOIN categories c
+			ON c.category_id = p.category_id
+		GROUP BY category_name
+), category_share AS(
+	SELECT 
+		cat_revenue,
+		cat_revenue * 100.0 / SUM(cat_revenue) OVER() AS  category_share_percent
+	FROM category_revenue
+)
+SELECT *
+FROM category_share
+ORDER BY category_share_percent DESC;
+
+WITH category_revenue AS(
+		SELECT
+			c.category_name,
+			SUM(quantity * unit_price) cat_revenue
+		FROM order_items oi
+		JOIN products p
+			ON p.product_id = oi.product_id
+		JOIN categories c
+			ON c.category_id = p.category_id
+		GROUP BY category_name
+)
+SELECT *
+FROM category_revenue
+WHERE cat_revenue > (SELECT AVG(cat_revenue) FROM category_revenue)
+ORDER BY cat_revenue DESC;
+
+WITH category_revenue AS(
+		SELECT
+			c.category_name,
+			SUM(quantity * unit_price) cat_revenue
+		FROM order_items oi
+		JOIN products p
+			ON p.product_id = oi.product_id
+		JOIN categories c
+			ON c.category_id = p.category_id
+		GROUP BY category_name
+)
+SELECT *
+FROM category_revenue
+WHERE cat_revenue < (SELECT AVG(cat_revenue) FROM category_revenue)
+ORDER BY cat_revenue DESC;
