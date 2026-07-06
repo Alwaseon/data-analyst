@@ -31,8 +31,35 @@ Able to:
 - Perform customer segmentation and revenue analysis
 - Translate business requirements into analytical SQL solutions
 
-### SQL Topics Completed
 
+### Excel Part
+
+Excel Topics Completed
+
+- Advanced Pivot Tables
+- Customer Analysis
+- Product Analysis
+- Category Analysis
+- Payment Analysis
+- Business KPI Analysis
+- Sorting and Filtering
+
+
+Skills Demonstrated
+
+- Building Pivot Tables
+- Customer performance analysis
+- Product performance analysis
+- Category revenue analysis
+- Payment status analysis
+- Revenue concentration analysis
+- Business KPI analysis
+
+
+
+###  SQL part
+
+SQL Topics Completed
 - SELECT
 - WHERE
 - ORDER BY
