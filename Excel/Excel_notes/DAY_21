@@ -1,0 +1,31 @@
+Excel Topics Learned
+- Power Pivot
+- Data Model
+- Relationships
+- Diagram View
+- PivotTables from Data Model
+- PivotCharts
+- DAX Measures
+- AutoSum Measures
+- Interactive Slicers
+- Timeline Filter
+- KPI Dashboard
+
+DAX Learned
+- SUM()
+- COUNT()
+- AVERAGE()
+- MIN()
+- MAX()
+
+Practice
+- Created DAX Measures using AutoSum
+- Built PivotTables from Data Model
+- Created PivotCharts
+- Connected interactive Slicers
+- Added Timeline Filter
+- Built KPI section
+- Created an interactive Sales Performance Dashboard
+
+Git & GitHub
+- COMMIT DAY 21 routine
