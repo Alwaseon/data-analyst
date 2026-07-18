@@ -1,0 +1,34 @@
+Power BI Topics Learned
+-Calendar Table
+-Mark as Date Table
+-Time Intelligence
+-DATESYTD()
+-DATESMTD()
+-DATESQTD()
+-DATEADD()
+-CALCULATE()
+-SUMX()
+-DIVIDE()
+
+Measures Created
+-Revenue YTD
+-Revenue MTD
+-Revenue QTD
+-Previous Month Revenue
+-Customer MTD
+-Orders MTD
+
+Practice
+-Create Calendar Table
+-Mark Calendar as Date Table
+-Create relationship between Calendar and Orders
+-Build Revenue YTD KPI
+-Build Revenue MTD KPI
+-Build Revenue QTD KPI
+-Compare Revenue with Previous Month
+-Create Customer MTD analysis
+-Create Orders MTD analysis
+-Build Time Intelligence Dashboard
+
+Git & GitHub
+-COMMIT DAY 26 routine
