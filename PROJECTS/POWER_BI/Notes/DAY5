@@ -1,0 +1,36 @@
+Power BI Topics Learned
+-TOPN()
+-RANKX()
+-ALL()
+-CALCULATE()
+-DIVIDE()
+-SELECTEDVALUE()
+-Dynamic Titles
+-Top N Analysis
+-Customer Ranking
+-Product Ranking
+
+Measures Created
+-Top 1 Customer Revenue
+-Top 1 Product Revenue
+-Average Customer Revenue
+-Average Product Revenue
+-Customer Rank
+-Product Rank
+-Dynamic Title
+
+Practice
+-Build Top 1 Customer Revenue KPI
+-Build Top 1 Product Revenue KPI
+-Build Average Customer Revenue KPI
+-Build Average Product Revenue KPI
+-Create Customer Ranking using RANKX()
+-Create Product Ranking using RANKX()
+-Build Top 5 Customers by Revenue chart
+-Build Top 5 Products by Revenue chart
+-Create Dynamic Title using SELECTEDVALUE()
+-Compare TOPN() with Top N Visual Filter
+-Build Advanced Analytics Dashboard
+
+Git & GitHub
+-COMMIT DAY 27 routine
