@@ -2,14 +2,14 @@
 Interactive Sales Dashboard built in Power BI.
 
 ## Features
--KPI Cards
--Revenue Analysis
--Customer Analytics
--Product Analytics
--Drillthrough Pages
--Time Intelligence (MTD)
--Slicers
--Interactive Charts
+- KPI Cards
+- Revenue Analysis
+- Customer Analytics
+- Product Analytics
+- Drillthrough Pages
+- Time Intelligence (MTD)
+- Slicers
+- Interactive Charts
 
 ## Dataset
 Sales Orders
@@ -18,9 +18,9 @@ Products
 Payments
 
 ## Tools
--Power BI
--DAX
--Power Query
+- Power BI
+- DAX
+- Power Query
 
 ## Dashboard Pages
 - Sales Overview
