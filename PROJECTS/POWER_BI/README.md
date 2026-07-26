@@ -23,8 +23,8 @@ Payments
 -Power Query
 
 ## Dashboard Pages
--Sales Overview
--Customer Analytics
--Product Analytics
--Customer Details
--Product Details
+- Sales Overview
+- Customer Analytics
+- Product Analytics
+- Customer Details
+- Product Details
