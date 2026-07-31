@@ -1,30 +1,30 @@
-## Project Overview
-Interactive Sales Dashboard built in Power BI.
+# Power BI Sales Dashboard
 
-## Features
-- KPI Cards
-- Revenue Analysis
-- Customer Analytics
-- Product Analytics
-- Drillthrough Pages
-- Time Intelligence (MTD)
-- Slicers
-- Interactive Charts
-
-## Dataset
-Sales Orders
-Customers
-Products
-Payments
+Interactive business dashboard built using **Power BI**.
 
 ## Tools
+
 - Power BI
 - DAX
 - Power Query
 
-## Dashboard Pages
-- Sales Overview
-- Customer Analytics
-- Product Analytics
-- Customer Details
-- Product Details
+## Skills
+
+- Data Modeling
+- DAX Measures
+- KPI Reporting
+- Time Intelligence
+- Dashboard Design
+- Data Visualization
+
+## What I Built
+
+- Interactive KPI dashboard
+- Revenue MTD analysis
+- Customer analytics
+- Product analytics
+- Top 5 customers & products
+- Ranking analysis
+- Dynamic titles
+
+---

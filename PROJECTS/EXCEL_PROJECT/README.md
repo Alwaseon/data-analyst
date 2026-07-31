@@ -1,46 +1,29 @@
-# Sales Performance Dashboard (Excel)
+# Excel Sales Dashboard
 
-## Project Overview
+Interactive sales dashboard built using **Microsoft Excel**.
 
-This project analyzes sales performance using Microsoft Excel, Power Pivot, and DAX.
+## Tools
 
-The dashboard provides interactive insights into:
-
-- Revenue
-- Customers
-- Products
-- Categories
-- Payment Methods
-- Sales over Time
-
----
-
-## Tools Used
 - Microsoft Excel
+- Power Query
 - Pivot Tables
 - Pivot Charts
-- Power Pivot
-- DAX
-- Data Model
-- Slicers
-- Timeline
+- XLOOKUP
 
----
+## Skills
 
-## Dashboard Features
-- KPI Cards
-- Revenue by Product
-- Revenue by Category
-- Revenue by Customer
-- Revenue by Payment Method
-- Interactive Filters
-
----
-
-## Skills Demonstrated
 - Data Cleaning
-- Data Modeling
-- Relationships
+- Data Transformation
+- KPI Reporting
 - Dashboard Design
-- Business Analysis
-- DAX Fundamentals
+- Sales Analysis
+
+## What I Built
+
+- Interactive dashboard
+- KPI metrics
+- Sales performance analysis
+- Customer insights
+- Product insights
+
+---
