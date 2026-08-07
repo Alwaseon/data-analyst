@@ -1,4 +1,4 @@
-# I'm Emil Askarov 
+# I'm Emil Asqarov 
 **Junior Data Analyst**
 
 Electrical & Computer Engineering student at Ajou University in Tashkent with hands-on experience in SQL, Excel, PostgreSQL, and Power BI. Passionate about data analytics and building dashboards that transform raw data into actionable business insights.
